@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUsuarioLogado } from "../utils/auth";
+import { API_URL } from '../constants';
 
 export default function RelatorioMensal() {
   const usuario = getUsuarioLogado();
@@ -10,16 +11,16 @@ export default function RelatorioMensal() {
   const [erro, setErro] = useState("");
   const [categoriaExpandida, setCategoriaExpandida] = useState(null);
   const [transacoes, setTransacoes] = useState([]);
-
+  
   useEffect(() => {
     const carregarRelatorio = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/relatorios/mensal/${usuario.id}?mes=${mes}&ano=${ano}`
+          `${API_URL}/relatorios/mensal/${usuario.id}?mes=${mes}&ano=${ano}`
         );
         const data = await res.json();
         const transRes = await fetch(
-          `http://localhost:8000/usuarios/${usuario.id}/transacoes/?limite=1000`
+          `${API_URL}/usuarios/${usuario.id}/transacoes/?limite=1000`
         );
         const transData = await transRes.json();
         setTransacoes(transData);

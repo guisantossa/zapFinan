@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_URL } from '../constants';
 
 export default function Login({ setUsuario }) {
   const [telefone, setTelefone] = useState('');
@@ -7,13 +8,12 @@ export default function Login({ setUsuario }) {
   const [mensagem, setMensagem] = useState('');
   const [erro, setErro] = useState('');
 
-  const API_URL = 'http://localhost:8000/auth';
 
   const handleEnviarTelefone = async (e) => {
     e.preventDefault();
     setErro('');
     try {
-      const res = await fetch(`${API_URL}/send-token/`, {
+      const res = await fetch(`${API_URL}/auth/send-token/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ telefone }),
@@ -30,7 +30,7 @@ export default function Login({ setUsuario }) {
     e.preventDefault();
     setErro('');
     try {
-      const res = await fetch(`${API_URL}/login/`, {
+      const res = await fetch(`${API_URL}/auth/login/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ telefone, token }),

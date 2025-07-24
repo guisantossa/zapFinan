@@ -4,7 +4,7 @@ import { getUsuarioLogado } from "../utils/auth";
 import ResumoCard from "../components/ResumoCard";
 import SelectBase from "../components/SelectBase";
 import DatePickerBase from "../components/DatePickerBase";
-
+import { API_URL } from '../constants';
 export default function Transacoes() {
   const usuario = getUsuarioLogado();
   const [transacoes, setTransacoes] = useState([]);
@@ -22,7 +22,7 @@ export default function Transacoes() {
     const fetchTransacoes = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/usuarios/${usuario.id}/transacoes/?limite=1000`
+          `${API_URL}/usuarios/${usuario.id}/transacoes/?limite=1000`
         );
         if (!res.ok) throw new Error("Erro ao buscar transações");
         const data = await res.json();
@@ -33,7 +33,7 @@ export default function Transacoes() {
     };
     const fetchCategorias = async () => {
       try {
-        const res = await fetch("http://localhost:8000/categorias/");
+        const res = await fetch("${API_URL}/categorias/");
         const data = await res.json();
         setCategorias(data);
       } catch (err) {

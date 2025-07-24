@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import ResumoCard from "../components/ResumoCard";
 import { getUsuarioLogado } from "../utils/auth";
+import { API_URL } from '../constants';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend,
   PieChart, Pie, Cell
@@ -22,11 +23,11 @@ export default function Dashboard() {
       const uid = usuario.id;
 
       const endpoints = [
-        fetch(`http://localhost:8000/dashboard/resumo/${uid}`),
-        fetch(`http://localhost:8000/dashboard/ultimos-meses/${uid}`),
-        fetch(`http://localhost:8000/dashboard/por-categoria/${uid}`),
-        fetch(`http://localhost:8000/dashboard/ranking/${uid}`),
-        fetch(`http://localhost:8000/dashboard/ultimas-transacoes/${uid}`)
+        fetch(`${API_URL}/dashboard/resumo/${uid}`),
+        fetch(`${API_URL}/dashboard/ultimos-meses/${uid}`),
+        fetch(`${API_URL}/dashboard/por-categoria/${uid}`),
+        fetch(`${API_URL}/dashboard/ranking/${uid}`),
+        fetch(`${API_URL}/dashboard/ultimas-transacoes/${uid}`)
       ];
 
       const [r1, r2, r3, r4, r5] = await Promise.all(endpoints.map(r => r.then(res => res.json())));

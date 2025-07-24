@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getUsuarioLogado } from "../utils/auth";
+import { API_URL } from '../constants';
 
 export default function RelatorioAnual() {
   const [usuario, setUsuario] = useState(null);
@@ -24,7 +25,7 @@ export default function RelatorioAnual() {
     const carregarRelatorio = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/relatorios/anual/${usuario.id}?ano=${ano}`
+          `${API_URL}/relatorios/anual/${usuario.id}?ano=${ano}`
         );
         const data = await res.json();
         setDados(data);
