@@ -18,7 +18,7 @@ app.include_router(relatorios_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[origins],  # porta do Vite
+    allow_origins=origins,  # porta do Vite
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
