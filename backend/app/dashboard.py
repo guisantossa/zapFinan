@@ -99,8 +99,8 @@ def ultimas_transacoes(usuario_id: str):
     cur = conn.cursor()
 
     cur.execute("""
-        SELECT valor, tipo, nome, data_transacao, mensagem_original
-        FROM transactions inner join categories on transactions.categoria_id = categories.id
+        SELECT t.valor, t.tipo, c.nome, t.data_transacao, t.mensagem_original
+        FROM transactions t inner join categories c on t.categoria_id = c.id
         WHERE usuario_id = %s
         ORDER BY data_transacao DESC
         LIMIT 5
