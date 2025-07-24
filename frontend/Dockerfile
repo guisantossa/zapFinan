@@ -1,5 +1,5 @@
 # build
-FROM node:18 as builder
+FROM node:20.19 as builder
 WORKDIR /app
 COPY . .
 RUN npm install
