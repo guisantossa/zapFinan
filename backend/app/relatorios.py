@@ -49,9 +49,9 @@ def relatorio_mensal(usuario_id: str, mes: int = Query(...), ano: int = Query(..
 
     # Transações detalhadas
     cur.execute("""
-        SELECT transactions.id, valor, tipo, descricao, data_transacao, c.nome as categoria, mensagem_original
-        FROM transactions
-        LEFT JOIN categories c ON transactions.categoria_id = c.id
+        SELECT t.id, t.valor, t.tipo, t.descricao, t.data_transacao, c.nome as categoria, t.mensagem_original
+        FROM transactions t
+        LEFT JOIN categories c ON t.categoria_id = c.id
         WHERE usuario_id = %s AND data_transacao >= %s AND data_transacao < %s
         ORDER BY data_transacao DESC
     """, (usuario_id, inicio, fim))

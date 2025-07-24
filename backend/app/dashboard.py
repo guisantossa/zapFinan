@@ -129,11 +129,11 @@ def ranking_categoria(usuario_id: str):
     cur = conn.cursor()
 
     cur.execute("""
-        SELECT nome, SUM(valor)
-        FROM transactions inner join categories on transactions.categoria_id = categories.id
-        WHERE usuario_id = %s AND tipo = 'despesa' AND data_transacao >= %s
-        GROUP BY nome
-        ORDER BY SUM(valor) DESC
+        SELECT c.nome, SUM(t.valor)
+        FROM transactions t inner join categories c on t.categoria_id = c.id
+        WHERE t.usuario_id = %s AND t.tipo = 'despesa' AND t.data_transacao >= %s
+        GROUP BY c.nome
+        ORDER BY SUM(t.valor) DESC
         LIMIT 5
     """, (usuario_id, inicio_mes))
     rows = cur.fetchall()

@@ -16,10 +16,10 @@ def listar_transacoes(usuario_id: str, limite: int = Query(10)):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT valor, tipo, nome, data_transacao, mensagem_original
-        FROM transactions inner join categories on transactions.categoria_id = categories.id
-        WHERE usuario_id = %s
-        ORDER BY data_transacao DESC
+        SELECT t.valor, t.tipo, c.nome, t.data_transacao, t.mensagem_original
+        FROM transactions t inner join categories c on t.categoria_id = c.id
+        WHERE t.usuario_id = %s
+        ORDER BY t.data_transacao DESC
         LIMIT %s
     """, (usuario_id, limite))
 
