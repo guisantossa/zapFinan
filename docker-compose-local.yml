@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./app:/app
+    environment:
+      - DATABASE_URL=${DATABASE_URL}  # 🔐 forneça isso no .env real

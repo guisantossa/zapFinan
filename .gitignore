@@ -1,0 +1,6 @@
+.env
+.venv
+test_conn.py
+insert__.py
+insert_embeddings.py
+sql.sql

@@ -1,0 +1,100 @@
+[
+  {
+    "mensagem": "quanto recebi de Pix Recebido nos últimos dias?",
+    "mensagem_normalizada": "quanto recebi de Pix Recebido nos últimos dias?",
+    "intencao": "relatorio",
+    "tipo": "receita",
+    "categoria": "Pix Recebido"
+  },
+  {
+    "mensagem": "qual foi minha despesa com Compras Presenciais esse mês?",
+    "mensagem_normalizada": "qual foi minha despesa com Compras Presenciais esse mês?",
+    "intencao": "relatorio",
+    "tipo": "despesa",
+    "categoria": "Compras Presenciais"
+  },
+  {
+    "mensagem": "ganhei [VALOR] com Reembolso",
+    "mensagem_normalizada": "ganhei [VALOR] com Reembolso",
+    "intencao": "insercao",
+    "tipo": "receita",
+    "categoria": "Reembolso"
+  },
+  {
+    "mensagem": "quero saber o que entrou de Outros",
+    "mensagem_normalizada": "quero saber o que entrou de Outros",
+    "intencao": "relatorio",
+    "tipo": "despesa",
+    "categoria": "Outros"
+  },
+  {
+    "mensagem": "[VALOR] foram gastos com Compras Presenciais",
+    "mensagem_normalizada": "[VALOR] foram gastos com Compras Presenciais",
+    "intencao": "insercao",
+    "tipo": "despesa",
+    "categoria": "Compras Presenciais"
+  },
+  {
+    "mensagem": "qual foi minha despesa com Pix Recebido esse mês?",
+    "mensagem_normalizada": "qual foi minha despesa com Pix Recebido esse mês?",
+    "intencao": "relatorio",
+    "tipo": "receita",
+    "categoria": "Pix Recebido"
+  },
+  {
+    "mensagem": "quanto recebi de Outras nos últimos dias?",
+    "mensagem_normalizada": "quanto recebi de Outras nos últimos dias?",
+    "intencao": "relatorio",
+    "tipo": "receita",
+    "categoria": "Outras"
+  },
+  {
+    "mensagem": "qual foi minha despesa com Freelance esse mês?",
+    "mensagem_normalizada": "qual foi minha despesa com Freelance esse mês?",
+    "intencao": "relatorio",
+    "tipo": "receita",
+    "categoria": "Freelance"
+  },
+  {
+    "mensagem": "qual foi minha despesa com Bar e Restaurante esse mês?",
+    "mensagem_normalizada": "qual foi minha despesa com Bar e Restaurante esse mês?",
+    "intencao": "relatorio",
+    "tipo": "despesa",
+    "categoria": "Bar e Restaurante"
+  },
+  {
+    "mensagem": "ganhei [VALOR] com Reembolso",
+    "mensagem_normalizada": "ganhei [VALOR] com Reembolso",
+    "intencao": "insercao",
+    "tipo": "receita",
+    "categoria": "Reembolso"
+  },
+  {
+    "mensagem": "quanto gastei com Aluguéis?",
+    "mensagem_normalizada": "quanto gastei com Aluguéis?",
+    "intencao": "relatorio",
+    "tipo": "despesa",
+    "categoria": "Aluguéis"
+  },
+  {
+    "mensagem": "[VALOR] recebido de Pix Recebido",
+    "mensagem_normalizada": "[VALOR] recebido de Pix Recebido",
+    "intencao": "insercao",
+    "tipo": "receita",
+    "categoria": "Pix Recebido"
+  },
+  {
+    "mensagem": "quero ver o quanto entrou de Renda Extra",
+    "mensagem_normalizada": "quero ver o quanto entrou de Renda Extra",
+    "intencao": "relatorio",
+    "tipo": "receita",
+    "categoria": "Renda Extra"
+  },
+  {
+    "mensagem": "gastei [VALOR] no Educação",
+    "mensagem_normalizada": "gastei [VALOR] no Educação",
+    "intencao": "insercao",
+    "tipo": "despesa",
+    "categoria": "Educação"
+  }
+]

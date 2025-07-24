@@ -1,0 +1,18 @@
+🧠 Resumo do Projeto ZapGastos
+Repositório GitHub: já criado
+
+Arquitetura atual:
+
+Banco de Dados: PostgreSQL via RDS (já provisionado e com base criada)
+
+Servidor: EC2 da AWS
+
+Rodando n8n (orquestração das automações)
+
+Rodando evolution-api (conector do WhatsApp)
+
+Deploy: todos os serviços sendo executados diretamente na EC2
+
+Fase atual:
+
+Arquitetura e implementação dos fluxos de automação no n8n

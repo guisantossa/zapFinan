@@ -1,0 +1,99 @@
+{
+  "name": "Inserir Embeddings",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Carrega JSON",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [200, 300],
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/guilhermesaa/tmp-zapgastos/main/expressions_1000.json",
+        "responseFormat": "json"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Separar expressões",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [420, 300],
+      "parameters": {
+        "fieldToSplit": "body",
+        "options": {}
+      }
+    },
+    {
+      "id": "3",
+      "name": "Gerar Embedding",
+      "type": "@n8n/n8n-nodes-openai.embeddings",
+      "typeVersion": 1,
+      "position": [640, 300],
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "text": "={{ $json.mensagem }}"
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "SEU_ID_CREDENCIAL",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "id": "4",
+      "name": "Inserir no Banco",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [860, 300],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO expressions_embeddings (mensagem, intencao, tipo, embedding)\nVALUES (\n  {{ $json.input.mensagem }},\n  {{ $json.input.intencao }},\n  {{ $json.input.tipo }},\n  {{ $json.embedding }}\n);"
+      },
+      "credentials": {
+        "postgres": {
+          "id": "SEU_ID_CREDENCIAL",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "id": "5",
+      "name": "Formatar dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [740, 460],
+      "parameters": {
+        "values": {
+          "object": {
+            "input": "={{ $json }}",
+            "embedding": "={{ $json.data[0].embedding }}"
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Carrega JSON": {
+      "main": [
+        [{ "node": "Separar expressões", "type": "main", "index": 0 }]
+      ]
+    },
+    "Separar expressões": {
+      "main": [
+        [{ "node": "Gerar Embedding", "type": "main", "index": 0 }]
+      ]
+    },
+    "Gerar Embedding": {
+      "main": [
+        [{ "node": "Formatar dados", "type": "main", "index": 0 }]
+      ]
+    },
+    "Formatar dados": {
+      "main": [
+        [{ "node": "Inserir no Banco", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false
+}

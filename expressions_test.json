@@ -1,0 +1,32 @@
+[
+  {
+    "mensagem": "transferi 50 com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou 50 de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou 50 de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei 50 na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei 50 em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei 50 no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  }
+]

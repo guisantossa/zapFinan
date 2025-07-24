@@ -1,0 +1,33 @@
+# Classificação de Texto - ZapGastos
+
+Você deve classificar mensagens recebidas via WhatsApp em uma das seguintes categorias:
+
+- **inserir_despesas**: mensagens que indicam um gasto ou despesa. Exemplos:
+  - "gastei 30 reais no mercado"
+  - "paguei o uber ontem"
+  - "comprei lanche por 15 reais"
+  - "dei 50 reais pra gasolina"
+
+- **relatorio**: mensagens que pedem um resumo ou histórico de gastos. Exemplos:
+  - "quanto gastei hoje?"
+  - "me dá o extrato da semana"
+  - "quero ver meus gastos"
+  - "me mostra o total da semana passada"
+
+- **assinatura**: mensagens relacionadas ao plano do usuário. Exemplos:
+  - "qual é meu plano?"
+  - "quero pagar a assinatura"
+  - "estou no gratuito?"
+
+- **configuracao**: mensagens sobre alterar preferências ou notificações. Exemplos:
+  - "quero mudar o horário dos alertas"
+  - "me avise só segunda e sexta"
+  - "como configuro a categoria?"
+
+- **fora_de_contexto**: mensagens sem relação com finanças. Exemplos:
+  - "oi"
+  - "vc tá aí?"
+  - "kkk que loucura"
+  - "manda meme"
+
+Retorne somente a **categoria** como string: inserir_despesas, relatorio, assinatura, configuracao ou fora_de_contexto.

@@ -1,0 +1,5002 @@
+[
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "enviei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "gastei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "depositaram do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "gastei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "comprei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei em roupas",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "entrou da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "transferi com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "paguei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "ganhei de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "recebi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "comprei com aluguel",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "recebi de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram de reembolso",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "enviei na farmácia",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "retirei no mercado",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "retirei no bar",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "transferi com transporte",
+    "intencao": "insercao",
+    "tipo": "despesa"
+  },
+  {
+    "mensagem": "vendi com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "entrou de salário",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi do cliente",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "ganhei com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "vendi no pix",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram com vendas",
+    "intencao": "insercao",
+    "tipo": "receita"
+  },
+  {
+    "mensagem": "depositaram da empresa",
+    "intencao": "insercao",
+    "tipo": "receita"
+  }
+]
