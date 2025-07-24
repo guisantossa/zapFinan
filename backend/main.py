@@ -5,6 +5,9 @@ from app.categoria import router as categoria_router
 from app.dashboard import router as dashboard_router
 from app.relatorios import router as relatorios_router
 from fastapi.middleware.cors import CORSMiddleware
+import os
+cors_origins = os.getenv("CORS_ORIGINS", "")
+origins = [origin.strip() for origin in cors_origins.split(",") if origin.strip()]
 app = FastAPI()
 
 app.include_router(auth_router)
@@ -15,7 +18,7 @@ app.include_router(relatorios_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # porta do Vite
+    allow_origins=[origins],  # porta do Vite
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
