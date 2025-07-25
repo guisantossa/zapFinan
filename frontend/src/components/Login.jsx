@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants';
 
@@ -50,7 +50,7 @@ export default function Login({ setUsuario }) {
       setErro('Token inválido ou expirado.');
     }
   };
-  
+
   useEffect(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const tokenUrl = urlParams.get('token');
