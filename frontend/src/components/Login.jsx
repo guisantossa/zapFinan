@@ -11,6 +11,7 @@ export default function Login({ setUsuario }) {
 
   const navigate = useNavigate();
   console.log('API_URL de produção:', API_URL);
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const tokenUrl = urlParams.get('token');
@@ -100,25 +101,16 @@ export default function Login({ setUsuario }) {
         {erro && <div className="mb-4 text-red-500 font-semibold">{erro}</div>}
 
         {fase === 'telefone' && (
-          <form onSubmit={handleEnviarTelefone} className="space-y-4">
-            <div>
-              <label className="block text-gray-600 mb-1">Telefone (WhatsApp)</label>
-              <input
-                type="tel"
-                placeholder="(21) 91234-5678"
-                className="w-full p-2 border border-gray-300 rounded-lg"
-                value={telefone}
-                onChange={(e) => setTelefone(e.target.value)}
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700"
+          <div className="text-center">
+            <a
+              href={`https://wa.me/5521971270342?text=${encodeURIComponent('Me passa o Login')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-block bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition"
             >
-              Enviar token
-            </button>
-          </form>
+              Pedir acesso via WhatsApp
+            </a>
+          </div>
         )}
 
         {fase === 'token' && (
