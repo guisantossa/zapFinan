@@ -54,6 +54,7 @@ export default function Login({ setUsuario }) {
   useEffect(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const tokenUrl = urlParams.get('token');
+  const telefoneUrl = urlParams.get('telefone');
 
   if (tokenUrl) {
     const loginComToken = async () => {
@@ -61,7 +62,8 @@ export default function Login({ setUsuario }) {
         const res = await fetch(`${API_URL}/auth/me`, {
           headers: {
             Authorization: `Bearer ${tokenUrl}`
-          }
+          },
+          body: JSON.stringify({ telefone })
         });
         if (!res.ok) throw new Error('Token inválido');
         const data = await res.json();
