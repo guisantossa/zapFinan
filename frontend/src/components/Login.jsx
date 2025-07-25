@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants';
 
 export default function Login({ setUsuario }) {
@@ -49,6 +50,40 @@ export default function Login({ setUsuario }) {
       setErro('Token inválido ou expirado.');
     }
   };
+  
+  useEffect(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tokenUrl = urlParams.get('token');
+
+  if (tokenUrl) {
+    const loginComToken = async () => {
+      try {
+        const res = await fetch(`${API_URL}/auth/me`, {
+          headers: {
+            Authorization: `Bearer ${tokenUrl}`
+          }
+        });
+        if (!res.ok) throw new Error('Token inválido');
+        const data = await res.json();
+
+        const usuarioLogado = {
+          id: data.id,
+          nome: data.nome,
+          telefone: data.telefone
+        };
+
+        localStorage.setItem("zapgastos_usuario", JSON.stringify(usuarioLogado));
+        setUsuario(usuarioLogado);
+        navigate('/dashboard'); // ou outro destino
+      } catch (err) {
+        setErro('Token inválido ou expirado.');
+        navigate('/login');
+      }
+    };
+
+    loginComToken();
+  }
+}, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">

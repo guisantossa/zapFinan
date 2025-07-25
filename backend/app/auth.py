@@ -32,16 +32,12 @@ def send_token(req: SendTokenRequest):
     conn.commit()
 
     payload = {
-        "telefone": req.telefone,
-        "token": token
+        "link": f"https://zapgastos.com.br/login?token={token}"
     }
 
-    try:
-        requests.post(N8N_WEBHOOK_URL, json=payload)
-    except Exception as e:
-        print("Falha ao notificar o n8n:", e)
+    
 
-    return {"ok": True}
+    return payload
 
 class LoginRequest(BaseModel):
     telefone: str
