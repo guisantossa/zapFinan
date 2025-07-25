@@ -22,7 +22,10 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {!usuario ? (
-          <Route path="*" element={<Login setUsuario={setUsuario} />} />
+          <>
+            <Route path="/login" element={<Login setUsuario={setUsuario} />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
         ) : (
           <>
             <Route path="/" element={<Dashboard usuario={usuario} />} />
