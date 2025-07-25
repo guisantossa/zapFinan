@@ -7,4 +7,11 @@ export default defineConfig({
     react(),
     tailwindcss(), // integrações oficiais do Tailwind v4
   ],
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
+  },
+  server: {
+    historyApiFallback: true
+  }
 });
