@@ -1,14 +1,55 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { API_URL } from '../constants';
 
 export default function Login({ setUsuario }) {
   const [telefone, setTelefone] = useState('');
   const [token, setToken] = useState('');
-  const [fase, setFase] = useState('telefone'); // 'telefone' | 'token'
+  const [fase, setFase] = useState('telefone');
   const [mensagem, setMensagem] = useState('');
   const [erro, setErro] = useState('');
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenUrl = urlParams.get('token');
+    const telefoneUrl = urlParams.get('telefone');
+
+    if (tokenUrl && telefoneUrl) {
+      const loginComToken = async () => {
+        try {
+          const res = await fetch(`${API_URL}/auth/login`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${tokenUrl}`
+            },
+            body: JSON.stringify({ telefone: telefoneUrl, token: tokenUrl })
+          });
+
+          if (!res.ok) throw new Error('Token inválido');
+
+          const data = await res.json();
+
+          const usuarioLogado = {
+            id: data.id,
+            nome: data.nome,
+            telefone: data.telefone
+          };
+
+          localStorage.setItem("zapgastos_usuario", JSON.stringify(usuarioLogado));
+          setUsuario(usuarioLogado);
+          navigate('/dashboard');
+        } catch (err) {
+          setErro('Token inválido ou expirado.');
+          navigate('/login');
+        }
+      };
+
+      loginComToken();
+    }
+  }, []);
 
   const handleEnviarTelefone = async (e) => {
     e.preventDefault();
@@ -45,47 +86,11 @@ export default function Login({ setUsuario }) {
       };
       localStorage.setItem("zapgastos_usuario", JSON.stringify(usuarioLogado));
       setUsuario(usuarioLogado);
-    setMensagem('Login realizado com sucesso!');
+      setMensagem('Login realizado com sucesso!');
     } catch (err) {
       setErro('Token inválido ou expirado.');
     }
   };
-
-  useEffect(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const tokenUrl = urlParams.get('token');
-  const telefoneUrl = urlParams.get('telefone');
-
-  if (tokenUrl) {
-    const loginComToken = async () => {
-      try {
-        const res = await fetch(`${API_URL}/auth/me`, {
-          headers: {
-            Authorization: `Bearer ${tokenUrl}`
-          },
-          body: JSON.stringify({ telefone })
-        });
-        if (!res.ok) throw new Error('Token inválido');
-        const data = await res.json();
-
-        const usuarioLogado = {
-          id: data.id,
-          nome: data.nome,
-          telefone: data.telefone
-        };
-
-        localStorage.setItem("zapgastos_usuario", JSON.stringify(usuarioLogado));
-        setUsuario(usuarioLogado);
-        navigate('/dashboard'); // ou outro destino
-      } catch (err) {
-        setErro('Token inválido ou expirado.');
-        navigate('/login');
-      }
-    };
-
-    loginComToken();
-  }
-}, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
