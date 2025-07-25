@@ -10,7 +10,7 @@ export default function Login({ setUsuario }) {
   const [erro, setErro] = useState('');
 
   const navigate = useNavigate();
-
+  console.log('API_URL de produção:', API_URL);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const tokenUrl = urlParams.get('token');
@@ -22,8 +22,7 @@ export default function Login({ setUsuario }) {
           const res = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${tokenUrl}`
+              'Content-Type': 'application/json'
             },
             body: JSON.stringify({ telefone: telefoneUrl, token: tokenUrl })
           });
