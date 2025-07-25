@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 cors_origins = os.getenv("CORS_ORIGINS", "")
 origins = [origin.strip() for origin in cors_origins.split(",") if origin.strip()]
-app = FastAPI()
+app = FastAPI(redirect_slashes=False)
 
 app.include_router(auth_router)
 app.include_router(transactions_router)
