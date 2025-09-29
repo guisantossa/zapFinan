@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN pip install poetry==1.7.1
+# Install Poetry (version 1.8+ supports package-mode)
+RUN pip install poetry==1.8.3
 
 WORKDIR /app
 
@@ -26,7 +26,7 @@ COPY pyproject.toml poetry.lock* ./
 
 # Configure poetry and install dependencies
 RUN poetry config virtualenvs.create false \
-    && poetry install --only=main --no-dev \
+    && poetry install --only=main --no-root \
     && rm -rf $POETRY_CACHE_DIR
 
 # Copy application code
@@ -37,5 +37,5 @@ RUN useradd --create-home --shell /bin/bash app \
     && chown -R app:app /app
 USER app
 
-CMD ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 EXPOSE 8000
