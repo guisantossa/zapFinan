@@ -1,0 +1,12 @@
+{
+  "telefone": "+5511999999999",
+  "titulo": "Academia",
+  "data": "2025-01-20",
+  "hora_inicio": "07:00",
+  "hora_fim": "08:00",
+  "tipo": "evento",
+  "recorrencia": "semanal",
+  "recorrencia_ate": "2025-03-20",
+  "sincronizar_google": false,
+  "descricao": "Treino na academia"
+}

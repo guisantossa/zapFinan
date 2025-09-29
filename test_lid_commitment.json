@@ -1,0 +1,8 @@
+{
+  "lid": "testeusuario",
+  "titulo": "Pagamento do cartão",
+  "data": "2025-01-25",
+  "tipo": "pagamento",
+  "sincronizar_google": false,
+  "descricao": "Não esquecer de pagar o cartão"
+}

@@ -1,0 +1,8 @@
+{
+  "telefone": "+5511999999999",
+  "data_inicio": "2025-09-01",
+  "data_fim": "2025-09-30",
+  "categorias_nomes": ["Mercado", "Alimentação"],
+  "tipo": "despesa",
+  "formato_saida": "resumo"
+}

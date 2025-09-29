@@ -1,0 +1,9 @@
+{
+  "telefone": "+5511999999999",
+  "titulo": "Reunião de teste",
+  "data": "2025-01-15",
+  "hora_inicio": "14:00",
+  "hora_fim": "15:00",
+  "tipo": "reuniao",
+  "sincronizar_google": false
+}
