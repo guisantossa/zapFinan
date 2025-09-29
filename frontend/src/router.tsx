@@ -1,12 +1,12 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-
+import { SyncaLandingPage } from './pages/SyncaLandingPage';
+// ...existing code...
 // Layout Components
 import { RootLayout } from "./layouts/RootLayout";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { DashboardLayout } from "./layouts/DashboardLayout";
 
 // Auth Pages
-import { LandingPage } from "./pages/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 
@@ -16,6 +16,8 @@ import { TransacoesPage } from "./pages/TransacoesPage";
 import { OrcamentosPage } from "./pages/OrcamentosPage";
 import { CompromissosPage } from "./pages/CompromissosPage";
 import { RelatoriosPage } from "./pages/RelatoriosPage";
+import { PerfilPage } from "./pages/PerfilPage";
+import { ConfiguracoesPage } from "./pages/ConfiguracoesPage";
 
 // Protected Route Wrapper
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
@@ -28,7 +30,7 @@ export const router = createBrowserRouter([
       // Landing page (public)
       {
         index: true,
-        element: <LandingPage />,
+        element: <SyncaLandingPage />,
       },
 
       // Auth routes (public)
@@ -79,6 +81,14 @@ export const router = createBrowserRouter([
           {
             path: "relatorios",
             element: <RelatoriosPage />,
+          },
+          {
+            path: "perfil",
+            element: <PerfilPage />,
+          },
+          {
+            path: "configuracoes",
+            element: <ConfiguracoesPage />,
           },
         ],
       },

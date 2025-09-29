@@ -200,6 +200,82 @@ async def get_current_user_info(
     return current_user
 
 
+@router.get("/me/profile", response_model=dict)
+async def get_current_user_profile(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Obter perfil completo do usuário incluindo plano e estatísticas."""
+    from sqlalchemy.orm import joinedload
+
+    # Buscar usuário com plano
+    user_with_plan = (
+        db.query(User)
+        .options(joinedload(User.plano))
+        .filter(User.id == current_user.id)
+        .first()
+    )
+
+    # Buscar último pagamento
+    last_payment = None
+    if user_with_plan.plano_id:
+        from app.models.payment import Payment
+
+        last_payment = (
+            db.query(Payment)
+            .filter(Payment.usuario_id == current_user.id)
+            .order_by(Payment.criado_em.desc())
+            .first()
+        )
+
+    # Buscar estatísticas básicas de transações
+    from app.crud import transaction
+
+    stats = transaction.get_summary_by_user(db=db, usuario_id=current_user.id)
+
+    profile_data = {
+        "user": {
+            "id": str(user_with_plan.id),
+            "nome": user_with_plan.nome,
+            "email": user_with_plan.email,
+            "telefone": user_with_plan.telefone,
+            "data_inicio": user_with_plan.data_inicio,
+            "is_active": user_with_plan.is_active,
+            "is_verified": user_with_plan.is_verified,
+            "email_verified": user_with_plan.email_verified,
+            "last_login_at": user_with_plan.last_login_at,
+            "plano_id": user_with_plan.plano_id,
+        },
+        "plan": (
+            {
+                "id": user_with_plan.plano.id,
+                "nome": user_with_plan.plano.nome,
+                "valor_mensal": float(user_with_plan.plano.valor_mensal),
+                "valor_anual": float(user_with_plan.plano.valor_anual),
+            }
+            if user_with_plan.plano
+            else None
+        ),
+        "last_payment": (
+            {
+                "date": (
+                    last_payment.data_pagamento.isoformat()
+                    if last_payment.data_pagamento
+                    else None
+                ),
+                "status": last_payment.status,
+                "value": float(last_payment.valor),
+                "method": last_payment.metodo_pagamento,
+            }
+            if last_payment
+            else None
+        ),
+        "stats": stats,
+    }
+
+    return profile_data
+
+
 @router.put("/me", response_model=UserResponse)
 async def update_current_user(
     user_update: UserUpdate,

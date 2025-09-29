@@ -67,3 +67,9 @@ class User(Base):
     payments = relationship(
         "Payment", back_populates="usuario", cascade="all, delete-orphan"
     )
+    settings = relationship(
+        "UserSettings",
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )

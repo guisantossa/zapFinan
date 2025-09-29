@@ -28,6 +28,7 @@ class UserInDB(UserBase):
     is_verified: bool
     email_verified: bool
     last_login_at: Optional[datetime] = None
+    plano_id: Optional[int] = None
 
     class Config:
         from_attributes = True

@@ -16,7 +16,8 @@
       "Bash(timeout 15s npm run dev)",
       "Bash(npm run:*)",
       "Bash(uvicorn:*)",
-      "Bash(poetry run alembic:*)"
+      "Bash(poetry run alembic:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

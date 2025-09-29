@@ -72,10 +72,11 @@ class TransactionStats(BaseModel):
 class CategorySummary(BaseModel):
     """Resumo por categoria"""
 
-    categoria: str
+    categoria_id: int
+    categoria_nome: str
     tipo: str
-    total: Decimal
-    quantidade: int
+    total_valor: Decimal
+    total_transacoes: int
 
 
 class PaginatedTransactions(BaseModel):

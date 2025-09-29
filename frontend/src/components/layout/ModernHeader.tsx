@@ -1,7 +1,7 @@
-import { Search, Bell, Plus, User, LogOut, Moon, Sun } from 'lucide-react';
+import { Bell, User, LogOut, Moon, Sun, Settings } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,14 +10,12 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '../ui/avatar';
-import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 
 export function ModernHeader() {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  const [searchFocused, setSearchFocused] = useState(false);
 
   return (
     <motion.header 
@@ -31,64 +29,9 @@ export function ModernHeader() {
         borderColor: 'var(--glass-border)'
       }}
     >
-      <div className="flex items-center justify-between px-8 h-full">
-        {/* Welcome Section */}
-        <div className="flex-1">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Bem-vindo de volta! 👋
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              {new Date().toLocaleDateString('pt-BR', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </p>
-          </motion.div>
-        </div>
-
+      <div className="flex items-center justify-end px-8 h-full w-full">
         {/* Actions */}
         <div className="flex items-center space-x-4">
-          {/* Search */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-          >
-            <div className={`relative transition-all duration-300 ${
-              searchFocused ? 'transform scale-105' : ''
-            }`}>
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input
-                placeholder="Buscar transações, clientes..."
-                onFocus={() => setSearchFocused(true)}
-                onBlur={() => setSearchFocused(false)}
-                className="pl-12 w-80 bg-gray-50/50 dark:bg-gray-800/50 border-gray-200/50 dark:border-gray-700/50 rounded-2xl backdrop-blur-sm focus:bg-white dark:focus:bg-gray-800 focus:shadow-lg transition-all duration-300"
-              />
-            </div>
-          </motion.div>
-
-          {/* Quick Action Button */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-          >
-            <Button
-              className="bg-gradient-to-r from-[#22C55E] to-[#16A34A] hover:from-[#16A34A] hover:to-[#15803D] text-white rounded-2xl px-6 py-2.5 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 transition-all duration-300 group"
-            >
-              <Plus className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-300" />
-              Nova Transação
-            </Button>
-          </motion.div>
-
           {/* Dark Mode Toggle */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -163,10 +106,19 @@ export function ModernHeader() {
                   <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email || ''}</p>
                 </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="rounded-xl">
-                  <User className="w-4 h-4 mr-2" />
-                  Perfil
+                <DropdownMenuItem className="rounded-xl" asChild>
+                  <Link to="/dashboard/perfil" className="flex items-center">
+                    <User className="w-4 h-4 mr-2" />
+                    Meu Perfil
+                  </Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem className="rounded-xl" asChild>
+                  <Link to="/dashboard/configuracoes" className="flex items-center">
+                    <Settings className="w-4 h-4 mr-2" />
+                    Configurações
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="rounded-xl text-red-600"
                   onClick={logout}

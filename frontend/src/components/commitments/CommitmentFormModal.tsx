@@ -37,7 +37,6 @@ interface FormData {
   recorrencia: CommitmentRecurrence;
   recorrencia_ate: string;
   lembrete_whatsapp: boolean;
-  minutos_antes_lembrete: string;
 }
 
 export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: CommitmentFormModalProps) {
@@ -56,8 +55,7 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
     status: 'agendado',
     recorrencia: 'nenhuma',
     recorrencia_ate: '',
-    lembrete_whatsapp: true,
-    minutos_antes_lembrete: '30'
+    lembrete_whatsapp: true
   });
 
   // Reset form when modal opens/closes or commitment changes
@@ -79,8 +77,7 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
           status: commitment.status,
           recorrencia: commitment.recorrencia,
           recorrencia_ate: commitment.recorrencia_ate || '',
-          lembrete_whatsapp: commitment.lembrete_whatsapp,
-          minutos_antes_lembrete: commitment.minutos_antes_lembrete.toString()
+          lembrete_whatsapp: commitment.lembrete_whatsapp
         });
       } else {
         // Creating new commitment - set default dates
@@ -98,8 +95,7 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
           status: 'agendado',
           recorrencia: 'nenhuma',
           recorrencia_ate: '',
-          lembrete_whatsapp: true,
-          minutos_antes_lembrete: '30'
+          lembrete_whatsapp: true
         });
       }
       setErrors({});
@@ -144,11 +140,6 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
       newErrors.recorrencia_ate = 'Data limite é obrigatória para compromissos recorrentes';
     }
 
-    // Validate reminder minutes
-    const minutosAntes = parseInt(formData.minutos_antes_lembrete);
-    if (isNaN(minutosAntes) || minutosAntes < 0 || minutosAntes > 1440) {
-      newErrors.minutos_antes_lembrete = 'Minutos deve estar entre 0 e 1440';
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -177,7 +168,7 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
         recorrencia: formData.recorrencia,
         recorrencia_ate: formData.recorrencia !== 'nenhuma' ? formData.recorrencia_ate : undefined,
         lembrete_whatsapp: formData.lembrete_whatsapp,
-        minutos_antes_lembrete: parseInt(formData.minutos_antes_lembrete)
+        // minutos_antes_lembrete removed - not needed for new settings system
       };
 
       if (commitment) {
@@ -522,31 +513,6 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
                 </label>
               </div>
 
-              {formData.lembrete_whatsapp && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Lembrar com quantos minutos de antecedência?
-                  </label>
-                  <select
-                    value={formData.minutos_antes_lembrete}
-                    onChange={(e) => handleInputChange('minutos_antes_lembrete', e.target.value)}
-                    className="w-full md:w-48 px-3 py-2 bg-white/70 dark:bg-slate-700/70 border border-gray-200/50 dark:border-gray-600/50 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="5">5 minutos</option>
-                    <option value="15">15 minutos</option>
-                    <option value="30">30 minutos</option>
-                    <option value="60">1 hora</option>
-                    <option value="120">2 horas</option>
-                    <option value="1440">1 dia</option>
-                  </select>
-                  {errors.minutos_antes_lembrete && (
-                    <p className="mt-1 text-sm text-red-600 flex items-center">
-                      <AlertCircle className="w-4 h-4 mr-1" />
-                      {errors.minutos_antes_lembrete}
-                    </p>
-                  )}
-                </div>
-              )}
             </div>
           </div>
 

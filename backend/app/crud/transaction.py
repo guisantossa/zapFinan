@@ -105,12 +105,13 @@ class CRUDTransaction(CRUDBase[Transaction, TransactionCreate, TransactionUpdate
     ) -> List[dict]:
         query = (
             db.query(
-                Category.nome.label("categoria"),
-                Category.tipo,
-                func.sum(Transaction.valor).label("total"),
-                func.count(Transaction.id).label("quantidade"),
+                func.coalesce(Category.id, 0).label("categoria_id"),
+                func.coalesce(Category.nome, "Sem categoria").label("categoria_nome"),
+                func.coalesce(Category.tipo, Transaction.tipo).label("tipo"),
+                func.sum(Transaction.valor).label("total_valor"),
+                func.count(Transaction.id).label("total_transacoes"),
             )
-            .join(Transaction.categoria)
+            .outerjoin(Transaction.categoria)
             .filter(Transaction.usuario_id == usuario_id)
         )
 
@@ -122,7 +123,11 @@ class CRUDTransaction(CRUDBase[Transaction, TransactionCreate, TransactionUpdate
                 )
             )
 
-        return query.group_by(Category.nome, Category.tipo).all()
+        return query.group_by(
+            func.coalesce(Category.id, 0),
+            func.coalesce(Category.nome, "Sem categoria"),
+            func.coalesce(Category.tipo, Transaction.tipo),
+        ).all()
 
 
 transaction = CRUDTransaction(Transaction)

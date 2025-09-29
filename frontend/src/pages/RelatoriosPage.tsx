@@ -1,66 +1,110 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { AnimatedBarChart } from '../components/dashboard/AnimatedBarChart';
-import { AnimatedPieChart } from '../components/dashboard/AnimatedPieChart';
-
-const contentVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+import {
+  FileText,
+  Wallet,
+  PieChart
+} from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
+import { TransactionReport } from '../components/reports/TransactionReport';
+import { BudgetReport } from '../components/reports/BudgetReport';
+import { CategoryReport } from '../components/reports/CategoryReport';
 
 export function RelatoriosPage() {
+  const [activeTab, setActiveTab] = useState('transactions');
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="space-y-8"
-    >
-      {/* Page Title */}
+    <div>
+      {/* Background decorations */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-indigo-600/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-400/20 to-pink-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-emerald-400/10 to-teal-600/10 rounded-full blur-3xl" />
+      </div>
+
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-8"
+        className="relative z-10 space-y-8"
       >
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-2">
-          Relatórios
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Análises detalhadas e insights financeiros
-        </p>
-      </motion.div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-2">
+                Relatórios Financeiros
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400">
+                Análises detalhadas baseadas em dados reais • Filtros avançados • Exportação de dados
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
-      {/* Charts Row */}
-      <motion.div
-        className="grid grid-cols-1 xl:grid-cols-2 gap-8"
-        variants={contentVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <AnimatedBarChart />
-        <AnimatedPieChart />
-      </motion.div>
+        {/* Tabs Navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-8"
+        >
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <div className="flex justify-center mb-8 overflow-x-auto">
+              <TabsList className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/30 rounded-2xl shadow-lg min-w-fit">
+                <TabsTrigger value="transactions" className="min-w-fit">
+                  <FileText className="w-4 h-4 mr-2" />
+                  <span>Transações</span>
+                </TabsTrigger>
+                <TabsTrigger value="budgets" className="min-w-fit">
+                  <Wallet className="w-4 h-4 mr-2" />
+                  <span>Orçamentos</span>
+                </TabsTrigger>
+                <TabsTrigger value="categories" className="min-w-fit">
+                  <PieChart className="w-4 h-4 mr-2" />
+                  <span>Categorias</span>
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
-      {/* Main Content */}
-      <motion.div
-        variants={contentVariants}
-        className="text-center p-12 rounded-3xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl shadow-xl"
-      >
-        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <span className="text-2xl">📈</span>
-        </div>
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-          Relatórios Avançados
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-          Visualize gráficos detalhados, exporte dados e obtenha insights sobre seus hábitos financeiros.
-        </p>
+            {/* Tab Contents */}
+            <TabsContent value="transactions">
+              <TransactionReport />
+            </TabsContent>
+
+            <TabsContent value="budgets">
+              <BudgetReport />
+            </TabsContent>
+
+            <TabsContent value="categories">
+              <CategoryReport />
+            </TabsContent>
+          </Tabs>
+        </motion.div>
+
+        {/* Mobile Optimization Notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-3xl border border-blue-200/50 dark:border-blue-700/50 lg:hidden"
+        >
+          <div className="text-center">
+            <div className="text-2xl mb-2">📊</div>
+            <h3 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-2">
+              Relatórios Mobile Otimizados
+            </h3>
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              Todos os relatórios são otimizados para dispositivos móveis com filtros intuitivos e exportação fácil
+            </p>
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

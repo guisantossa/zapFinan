@@ -177,10 +177,14 @@ def resumo_orcamentos_usuario(*, db: Session = Depends(get_database), usuario_id
             else:
                 data_fim = current_period.data_fim
 
-            if hasattr(datetime.now(), "date"):
-                data_atual = datetime.now().date()
-            else:
-                data_atual = datetime.now()
+            # Ensure we always use a date object for comparison
+            from datetime import date
+
+            data_atual = date.today()
+
+            # Convert data_fim to date if it's a datetime
+            if hasattr(data_fim, "date"):
+                data_fim = data_fim.date()
 
             dias_restantes = (data_fim - data_atual).days
 
