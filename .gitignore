@@ -6,3 +6,4 @@ insert_embeddings.py
 sql.sql
 .claude/
 n8n/
+__pycache__/
