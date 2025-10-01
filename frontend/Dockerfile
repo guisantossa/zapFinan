@@ -14,7 +14,7 @@ RUN npm cache clean --force && \
 COPY . .
 
 # Build args
-ARG VITE_API_URL=https://synca-api.aucta.tech/api/v1
+ARG VITE_API_URL=https://synca-api.aucta.tech
 ARG VITE_GOOGLE_CLIENT_ID
 ARG VITE_GOOGLE_REDIRECT_URI
 ARG VITE_GOOGLE_SECRET
