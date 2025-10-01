@@ -61,8 +61,8 @@ http {
 
         # API proxy
         location /api/ {
-            proxy_pass https://api.kronaai.tech/api/;
-            proxy_set_header Host api.kronaai.tech;
+            proxy_pass https://synca-api.aucta.tech;
+            proxy_set_header Host synca-api.aucta.tech;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
@@ -84,7 +84,7 @@ http {
 EOF
 
 # Copy built app
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose port
 EXPOSE 80
