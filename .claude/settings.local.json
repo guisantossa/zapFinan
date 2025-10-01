@@ -17,7 +17,8 @@
       "Bash(npm run:*)",
       "Bash(uvicorn:*)",
       "Bash(poetry run alembic:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(alembic upgrade:*)"
     ],
     "deny": [],
     "ask": []

@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 from app.core.auth import get_current_user
 from app.core.database import get_db
+from app.core.plan_validation import HTTP_402_PAYMENT_REQUIRED, require_feature
 from app.crud import transaction
 from app.models.transaction import Transaction
 from app.models.user import User
@@ -20,6 +21,7 @@ from app.schemas.transaction import (
     TransactionUpdate,
     TransactionWithCategory,
 )
+from app.services.usage_service import usage_service
 
 router = APIRouter()
 
@@ -136,14 +138,29 @@ async def get_transaction(
 
 
 @router.post(
-    "/", response_model=TransactionWithCategory, status_code=status.HTTP_201_CREATED
+    "/",
+    response_model=TransactionWithCategory,
+    status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(require_feature("transactions_enabled"))],
 )
 async def create_transaction(
     transaction_in: TransactionBase,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """Criar nova transação."""
+    """
+    Criar nova transação.
+
+    Requer: Feature 'transactions_enabled' no plano
+    Limite: max_transactions_per_month
+    """
+    # Verificar limite de transações do plano
+    can_create, error_msg = usage_service.check_can_create(
+        db, current_user, "transaction"
+    )
+    if not can_create:
+        raise HTTPException(status_code=HTTP_402_PAYMENT_REQUIRED, detail=error_msg)
+
     # Definir o usuário da transação
     transaction_in = TransactionCreate(
         mensagem_original=transaction_in.mensagem_original,

@@ -1,21 +1,47 @@
-import { Home, CreditCard, PiggyBank, Calendar, BarChart, LogOut, DollarSign } from 'lucide-react';
+import { Home, CreditCard, PiggyBank, Calendar, BarChart, LogOut, DollarSign, Lock } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { useUserPlan } from '../../hooks/useUserPlan';
 import { cn } from '../ui/utils';
 import { Button } from '../ui/button';
+import { toast } from 'sonner';
 
-const menuItems = [
+type MenuItem = {
+  id: string;
+  label: string;
+  icon: typeof Home;
+  feature?: 'transactions' | 'budgets' | 'commitments' | 'reports';
+};
+
+const menuItems: MenuItem[] = [
   { id: '/dashboard', label: 'Dashboard', icon: Home },
-  { id: '/dashboard/transacoes', label: 'Transações', icon: CreditCard },
-  { id: '/dashboard/orcamentos', label: 'Orçamentos', icon: PiggyBank },
-  { id: '/dashboard/compromissos', label: 'Compromissos', icon: Calendar },
-  { id: '/dashboard/relatorios', label: 'Relatórios', icon: BarChart },
+  { id: '/dashboard/transacoes', label: 'Transações', icon: CreditCard, feature: 'transactions' },
+  { id: '/dashboard/orcamentos', label: 'Orçamentos', icon: PiggyBank, feature: 'budgets' },
+  { id: '/dashboard/compromissos', label: 'Compromissos', icon: Calendar, feature: 'commitments' },
+  { id: '/dashboard/relatorios', label: 'Relatórios', icon: BarChart, feature: 'reports' },
 ];
 
 export function ModernSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { logout, user } = useAuth();
+  const { features, hasFeature } = useUserPlan();
+
+  const handleMenuClick = (item: MenuItem, e: React.MouseEvent) => {
+    if (item.feature && !hasFeature(item.feature)) {
+      e.preventDefault();
+      toast.error('Upgrade Necessário', {
+        description: `${item.label} requer upgrade do plano`,
+        action: {
+          label: 'Ver Planos',
+          onClick: () => navigate('/planos'),
+        },
+        duration: 5000,
+      });
+    }
+  };
+
   return (
     <motion.div
       initial={{ x: -100, opacity: 0 }}
@@ -55,6 +81,7 @@ export function ModernSidebar() {
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.id;
+          const isLocked = item.feature && !hasFeature(item.feature);
 
           return (
             <motion.div
@@ -69,21 +96,33 @@ export function ModernSidebar() {
             >
               <Link
                 to={item.id}
+                onClick={(e) => handleMenuClick(item, e)}
                 className={cn(
                   "w-full group relative flex items-center space-x-4 px-4 py-3.5 rounded-2xl transition-all duration-300 text-left",
-                  isActive
+                  isActive && !isLocked
                     ? "bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] text-white shadow-lg shadow-blue-500/25"
+                    : isLocked
+                    ? "text-gray-400 dark:text-gray-600 opacity-60 cursor-not-allowed"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
                 )}
               >
                 <Icon className={cn(
                   "w-5 h-5 transition-colors duration-300",
-                  isActive ? "text-white" : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-200"
+                  isActive && !isLocked
+                    ? "text-white"
+                    : isLocked
+                    ? "text-gray-400 dark:text-gray-600"
+                    : "text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-200"
                 )} />
-                <span className="font-medium">{item.label}</span>
+                <span className="font-medium flex-1">{item.label}</span>
+
+                {/* Lock icon for locked items */}
+                {isLocked && (
+                  <Lock className="w-4 h-4 text-gray-400 dark:text-gray-600" />
+                )}
 
                 {/* Active indicator */}
-                {isActive && (
+                {isActive && !isLocked && (
                   <motion.div
                     layoutId="activeTab"
                     className="absolute right-3 w-2 h-2 bg-white rounded-full"
@@ -113,7 +152,7 @@ export function ModernSidebar() {
                 {user?.nome || 'Usuário'}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                {user?.telefone || 'Plano Básico'}
+                {user?.plano?.nome || 'Sem Plano'}
               </p>
             </div>
           </div>

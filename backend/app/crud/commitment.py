@@ -228,9 +228,11 @@ class CRUDUserGoogleAuth(
 
     def is_token_expired(self, auth: UserGoogleAuth) -> bool:
         """Verifica se o token expirou."""
+        from datetime import timezone
+
         if not auth.google_token_expiry:
             return True
-        return datetime.now() >= auth.google_token_expiry
+        return datetime.now(timezone.utc) >= auth.google_token_expiry
 
     def get_active_users_with_google(self, db: Session) -> List[UserGoogleAuth]:
         """Busca usuários com Google ativo."""

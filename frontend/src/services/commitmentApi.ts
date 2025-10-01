@@ -9,7 +9,7 @@ import {
   CommitmentFilters
 } from '../types/commitment';
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 class CommitmentAPI {
   private async makeRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {

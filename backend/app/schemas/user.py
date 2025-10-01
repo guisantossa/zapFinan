@@ -4,15 +4,22 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
+from app.schemas.plan import PlanResponse
+from app.schemas.user_phone import UserPhoneResponse
+
 
 class UserBase(BaseModel):
-    telefone: str
     nome: Optional[str] = None
     email: Optional[str] = None
 
 
-class UserCreate(UserBase):
+class UserCreate(BaseModel):
+    """Schema para criar usuário (telefone será adicionado via UserPhone)."""
+
+    phone_number: str  # Telefone inicial
     senha: str
+    nome: Optional[str] = None
+    email: Optional[str] = None
 
 
 class UserUpdate(BaseModel):
@@ -29,13 +36,37 @@ class UserInDB(UserBase):
     email_verified: bool
     last_login_at: Optional[datetime] = None
     plano_id: Optional[int] = None
+    plano: Optional[PlanResponse] = None  # Informações completas do plano
+    phones: list[UserPhoneResponse] = []  # Lista de telefones do usuário
 
     class Config:
         from_attributes = True
 
 
 class User(UserInDB):
-    pass
+    """Schema de resposta de usuário com telefone principal computado."""
+
+    @property
+    def telefone(self) -> Optional[str]:
+        """Retorna telefone principal para compatibilidade."""
+        for phone in self.phones:
+            if phone.is_primary and phone.is_active:
+                return phone.phone_number
+        # Fallback: primeiro telefone ativo
+        for phone in self.phones:
+            if phone.is_active:
+                return phone.phone_number
+        return None
+
+
+# Schema para criar usuário com telefone
+class UserCreateWithPhone(BaseModel):
+    """Schema para criar usuário com telefone inicial."""
+
+    phone_number: str
+    senha: str
+    nome: Optional[str] = None
+    email: Optional[str] = None
 
 
 # Login schemas

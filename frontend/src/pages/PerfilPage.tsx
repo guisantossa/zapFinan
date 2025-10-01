@@ -19,6 +19,7 @@ import {
   Crown,
   BarChart3
 } from 'lucide-react';
+import { PhoneManagement } from '../components/profile/PhoneManagement';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -233,6 +234,10 @@ export function PerfilPage() {
                   <UserIcon className="w-4 h-4 mr-2" />
                   <span>Informações Pessoais</span>
                 </TabsTrigger>
+                <TabsTrigger value="phones" className="min-w-fit">
+                  <Phone className="w-4 h-4 mr-2" />
+                  <span>Telefones</span>
+                </TabsTrigger>
                 <TabsTrigger value="security" className="min-w-fit">
                   <Shield className="w-4 h-4 mr-2" />
                   <span>Segurança</span>
@@ -383,6 +388,11 @@ export function PerfilPage() {
                     </CardContent>
                   </Card>
               </div>
+            </TabsContent>
+
+            {/* Phones Tab */}
+            <TabsContent value="phones">
+              <PhoneManagement />
             </TabsContent>
 
             {/* Security Tab */}

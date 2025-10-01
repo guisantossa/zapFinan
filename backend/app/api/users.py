@@ -34,6 +34,7 @@ from app.core.validators import (
     validate_name,
     validate_phone,
 )
+from app.crud.user_phone import user_phone as user_phone_crud
 from app.models.user import User
 from app.schemas.user import (
     EmailVerificationRequest,
@@ -63,7 +64,7 @@ async def register_user(
     """Cadastrar novo usuário com validação de segurança."""
 
     # Sanitize inputs
-    telefone = sanitize_input(user_data.telefone, 20)
+    telefone = sanitize_input(user_data.phone_number, 20)
     nome = sanitize_input(user_data.nome, 100) if user_data.nome else None
     email = sanitize_input(user_data.email, 100) if user_data.email else None
 
@@ -111,9 +112,11 @@ async def register_user(
     # Format phone for storage
     formatted_phone = format_phone(telefone)
 
-    # Verificar se telefone já existe
-    existing_user = db.query(User).filter(User.telefone == formatted_phone).first()
-    if existing_user:
+    # Verificar se telefone já existe na tabela UserPhone
+    existing_phone = user_phone_crud.get_by_phone_number(
+        db, phone_number=formatted_phone
+    )
+    if existing_phone:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Telefone já cadastrado"
         )
@@ -140,7 +143,6 @@ async def register_user(
 
     # Criar novo usuário com todos os campos de segurança
     db_user = User(
-        telefone=formatted_phone,
         nome=nome,
         email=email,
         senha=hashed_password,
@@ -157,9 +159,24 @@ async def register_user(
     db.commit()
     db.refresh(db_user)
 
+    # Criar UserPhone associado (telefone principal)
+    from app.schemas.user_phone import UserPhoneCreate
+
+    user_phone_data = UserPhoneCreate(
+        user_id=db_user.id,
+        phone_number=formatted_phone,
+        is_primary=True,
+        is_verified=True,  # Considera verificado no registro
+        is_active=True,
+    )
+    user_phone_crud.create(db, obj_in=user_phone_data)
+
     # Criar tokens de acesso e refresh
     access_token = create_access_token(subject=str(db_user.id))
     refresh_token = create_refresh_token(subject=str(db_user.id))
+
+    # Refresh user to load phones
+    db.refresh(db_user)
 
     response_data = {
         "access_token": access_token,
@@ -167,13 +184,23 @@ async def register_user(
         "token_type": "bearer",
         "user": {
             "id": str(db_user.id),
-            "telefone": db_user.telefone,
+            "telefone": db_user.primary_phone,  # Usa property do modelo
             "nome": db_user.nome,
             "email": db_user.email,
             "is_active": db_user.is_active,
             "is_verified": db_user.is_verified,
             "email_verified": db_user.email_verified,
             "data_inicio": db_user.data_inicio,
+            "phones": [
+                {
+                    "id": str(p.id),
+                    "phone_number": p.phone_number,
+                    "is_primary": p.is_primary,
+                    "is_verified": p.is_verified,
+                    "is_active": p.is_active,
+                }
+                for p in db_user.phones
+            ],
         },
     }
 
@@ -195,9 +222,20 @@ async def register_user(
 @router.get("/me", response_model=UserResponse)
 async def get_current_user_info(
     current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
 ):
-    """Obter dados do usuário atual."""
-    return current_user
+    """Obter dados do usuário atual com informações do plano."""
+    from sqlalchemy.orm import joinedload
+
+    # Buscar usuário com plano carregado
+    user_with_plan = (
+        db.query(User)
+        .options(joinedload(User.plano))
+        .filter(User.id == current_user.id)
+        .first()
+    )
+
+    return user_with_plan
 
 
 @router.get("/me/profile", response_model=dict)
@@ -238,12 +276,22 @@ async def get_current_user_profile(
             "id": str(user_with_plan.id),
             "nome": user_with_plan.nome,
             "email": user_with_plan.email,
-            "telefone": user_with_plan.telefone,
+            "telefone": user_with_plan.primary_phone,  # Usa property do modelo
             "data_inicio": user_with_plan.data_inicio,
             "is_active": user_with_plan.is_active,
             "is_verified": user_with_plan.is_verified,
             "email_verified": user_with_plan.email_verified,
             "last_login_at": user_with_plan.last_login_at,
+            "phones": [
+                {
+                    "id": str(p.id),
+                    "phone_number": p.phone_number,
+                    "is_primary": p.is_primary,
+                    "is_verified": p.is_verified,
+                    "is_active": p.is_active,
+                }
+                for p in user_with_plan.phones
+            ],
             "plano_id": user_with_plan.plano_id,
         },
         "plan": (
@@ -342,7 +390,7 @@ async def login_user(
             )
         user = db.query(User).filter(User.email == identifier).first()
     else:
-        # Login por telefone
+        # Login por telefone usando UserPhone table
         phone_validation = validate_phone(identifier)
         if not phone_validation["is_valid"]:
             record_failed_attempt(client_ip)
@@ -351,7 +399,14 @@ async def login_user(
                 detail="Invalid phone number format",
             )
         formatted_phone = format_phone(identifier)
-        user = db.query(User).filter(User.telefone == formatted_phone).first()
+        # Buscar na tabela UserPhone
+        user_phone = user_phone_crud.get_by_phone_number(
+            db, phone_number=formatted_phone
+        )
+        if user_phone and user_phone.is_active:
+            user = db.query(User).filter(User.id == user_phone.user_id).first()
+        else:
+            user = None
 
     # Verificar se usuário existe
     if not user:
@@ -427,11 +482,17 @@ async def send_sms_token(
 
     formatted_phone = format_phone(telefone)
 
-    # Verificar se usuário existe
-    user = db.query(User).filter(User.telefone == formatted_phone).first()
-    if not user:
+    # Verificar se usuário existe usando UserPhone table
+    user_phone = user_phone_crud.get_by_phone_number(db, phone_number=formatted_phone)
+    if not user_phone or not user_phone.is_active:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Phone number not registered"
+        )
+
+    user = db.query(User).filter(User.id == user_phone.user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
         )
 
     if not user.is_active:
@@ -487,8 +548,15 @@ async def verify_sms_token(
 
     formatted_phone = format_phone(telefone)
 
-    # Buscar usuário
-    user = db.query(User).filter(User.telefone == formatted_phone).first()
+    # Buscar usuário usando UserPhone table
+    user_phone = user_phone_crud.get_by_phone_number(db, phone_number=formatted_phone)
+    if not user_phone or not user_phone.is_active:
+        record_failed_attempt(client_ip)
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Phone number not registered"
+        )
+
+    user = db.query(User).filter(User.id == user_phone.user_id).first()
     if not user:
         record_failed_attempt(client_ip)
         raise HTTPException(

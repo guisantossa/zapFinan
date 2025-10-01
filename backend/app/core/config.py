@@ -18,6 +18,7 @@ class Settings(BaseSettings):
 
     # n8n Integration
     N8N_WEBHOOK_URL: Optional[str] = None
+    N8N_PHONE_VERIFICATION_WEBHOOK_URL: Optional[str] = None
 
     # CORS
     CORS_ORIGINS: str = "http://localhost:3000,http://localhost:5173"

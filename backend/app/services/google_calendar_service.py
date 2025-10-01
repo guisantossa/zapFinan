@@ -19,8 +19,9 @@ class GoogleCalendarService:
     """Serviço de integração com Google Calendar."""
 
     SCOPES = [
-        "https://www.googleapis.com/auth/calendar",
+        "openid",
         "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/calendar",
     ]
 
     def __init__(self):

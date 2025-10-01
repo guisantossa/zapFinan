@@ -18,6 +18,10 @@ import { CompromissosPage } from "./pages/CompromissosPage";
 import { RelatoriosPage } from "./pages/RelatoriosPage";
 import { PerfilPage } from "./pages/PerfilPage";
 import { ConfiguracoesPage } from "./pages/ConfiguracoesPage";
+import PlanosPage from "./pages/PlanosPage";
+
+// Admin Pages
+import PlansAdminPage from "./pages/admin/PlansAdminPage";
 
 // Protected Route Wrapper
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
@@ -89,6 +93,14 @@ export const router = createBrowserRouter([
           {
             path: "configuracoes",
             element: <ConfiguracoesPage />,
+          },
+          {
+            path: "planos",
+            element: <PlanosPage />,
+          },
+          {
+            path: "admin/planos",
+            element: <PlansAdminPage />,
           },
         ],
       },

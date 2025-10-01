@@ -67,20 +67,40 @@ export const settingsApi = {
   },
 
   // Get Google Calendar status
-  async getGoogleCalendarStatus(): Promise<GoogleCalendarStatus> {
-    const response = await api.get<GoogleCalendarStatus>('/user/settings/google-calendar');
-    return response.data;
+  async getGoogleCalendarStatus(userId: string): Promise<GoogleCalendarStatus> {
+    const response = await api.get(`/compromissos/google/status`, {
+      params: { usuario_id: userId }
+    });
+    return {
+      connected: response.data.conectado || false,
+      email: response.data.google_email,
+      last_sync: response.data.ultima_sincronizacao,
+      sync_transactions_enabled: false, // Not used in commitment API
+      sync_commitments_enabled: true,
+    };
   },
 
-  // Connect Google Calendar
-  async connectGoogleCalendar(): Promise<{ message: string; settings: UserSettings }> {
-    const response = await api.post<{ message: string; settings: UserSettings }>('/user/settings/google-calendar/connect');
+  // Connect Google Calendar - Returns authorization URL
+  async connectGoogleCalendar(userId: string): Promise<{ authorization_url: string; message: string }> {
+    const response = await api.post(`/compromissos/google/conectar`, null, {
+      params: { usuario_id: userId }
+    });
     return response.data;
   },
 
   // Disconnect Google Calendar
-  async disconnectGoogleCalendar(): Promise<{ message: string; settings: UserSettings }> {
-    const response = await api.post<{ message: string; settings: UserSettings }>('/user/settings/google-calendar/disconnect');
+  async disconnectGoogleCalendar(userId: string): Promise<{ message: string }> {
+    const response = await api.post(`/compromissos/google/desconectar`, null, {
+      params: { usuario_id: userId }
+    });
+    return response.data;
+  },
+
+  // Force sync with Google Calendar
+  async syncGoogleCalendar(userId: string): Promise<{ message: string; results: any }> {
+    const response = await api.post(`/compromissos/google/sincronizar`, null, {
+      params: { usuario_id: userId }
+    });
     return response.data;
   },
 

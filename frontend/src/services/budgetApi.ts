@@ -1,6 +1,6 @@
 import { Budget, BudgetCreate, BudgetUpdate, BudgetSummary, Category, BudgetStats } from '../types/budget';
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 class BudgetAPI {
   private async makeRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {

@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.core.deps import get_database
+from app.core.plan_validation import HTTP_402_PAYMENT_REQUIRED, require_feature
 from app.crud.budget import budget, budget_period
 from app.crud.user import user
 from app.schemas.budget import (
@@ -17,18 +18,32 @@ from app.schemas.budget import (
     BudgetWithCurrentPeriod,
 )
 from app.services.budget_service import budget_service
+from app.services.usage_service import usage_service
 
 router = APIRouter()
 
 
-@router.post("/orcamentos/", response_model=Budget)
+@router.post(
+    "/orcamentos/",
+    response_model=Budget,
+    dependencies=[Depends(require_feature("budgets_enabled"))],
+)
 def criar_orcamento(*, db: Session = Depends(get_database), budget_in: BudgetCreate):
-    """Cria um novo orçamento para o usuário."""
+    """
+    Cria um novo orçamento para o usuário.
 
+    Requer: Feature 'budgets_enabled' no plano
+    Limite: max_budgets
+    """
     # Verificar se usuário existe
     db_user = user.get(db, id=budget_in.usuario_id)
     if not db_user:
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
+
+    # Verificar limite de orçamentos do plano
+    can_create, error_msg = usage_service.check_can_create(db, db_user, "budget")
+    if not can_create:
+        raise HTTPException(status_code=HTTP_402_PAYMENT_REQUIRED, detail=error_msg)
 
     # Verificar se já existe orçamento ativo para esta categoria
     existing_budget = budget.get_by_user_and_category(

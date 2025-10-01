@@ -9,11 +9,13 @@ from .payment import Payment
 from .plan import Plan
 from .transaction import Transaction
 from .user import User
+from .user_phone import UserPhone
 from .user_settings import UserSettings
 
 __all__ = [
     "Plan",
     "User",
+    "UserPhone",
     "Category",
     "Transaction",
     "Budget",

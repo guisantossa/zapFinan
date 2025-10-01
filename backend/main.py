@@ -9,6 +9,8 @@ from app.api.dashboard import router as dashboard_router
 from app.api.n8n_integration import router as n8n_router
 from app.api.plans import router as plans_router
 from app.api.transactions import router as transactions_router
+from app.api.usage import router as usage_router
+from app.api.user_phones import router as user_phones_router
 from app.api.user_settings import router as user_settings_router
 from app.api.users import router as users_router
 from app.core.config import settings
@@ -35,9 +37,11 @@ app.include_router(users_router, prefix="/user", tags=["users"])
 app.include_router(
     user_settings_router, prefix="/user/settings", tags=["user-settings"]
 )
+app.include_router(user_phones_router, prefix="/user/phones", tags=["user-phones"])
 app.include_router(dashboard_router, tags=["dashboard"])
 app.include_router(transactions_router, prefix="/transactions", tags=["transactions"])
 app.include_router(plans_router, prefix="/plans", tags=["plans"])
+app.include_router(usage_router, prefix="/usage", tags=["usage"])
 app.include_router(n8n_router, prefix="/n8n", tags=["n8n-integration"])
 
 # Configure CORS middleware

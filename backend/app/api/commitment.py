@@ -7,6 +7,7 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
 from app.core.deps import get_database
+from app.core.plan_validation import HTTP_402_PAYMENT_REQUIRED, require_feature
 from app.crud.commitment import commitment, user_google_auth
 from app.crud.user import user
 from app.schemas.commitment import (
@@ -19,19 +20,34 @@ from app.schemas.commitment import (
     GoogleAuthStatus,
 )
 from app.services.google_calendar_service import google_calendar_service
+from app.services.usage_service import usage_service
 
 router = APIRouter()
 
 
-@router.post("/compromissos/", response_model=Commitment)
+@router.post(
+    "/compromissos/",
+    response_model=Commitment,
+    dependencies=[Depends(require_feature("commitments_enabled"))],
+)
 def criar_compromisso(
     *, db: Session = Depends(get_database), commitment_in: CommitmentCreate
 ):
-    """Cria um novo compromisso."""
+    """
+    Cria um novo compromisso.
+
+    Requer: Feature 'commitments_enabled' no plano
+    Limite: max_commitments
+    """
     # Verificar se usuário existe
     db_user = user.get(db, id=commitment_in.usuario_id)
     if not db_user:
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
+
+    # Verificar limite de compromissos do plano
+    can_create, error_msg = usage_service.check_can_create(db, db_user, "commitment")
+    if not can_create:
+        raise HTTPException(status_code=HTTP_402_PAYMENT_REQUIRED, detail=error_msg)
 
     # Criar compromisso
     db_commitment = commitment.create_with_sync_flag(db, obj_in=commitment_in)
@@ -232,9 +248,16 @@ def status_google_calendar(
     )
 
 
-@router.post("/compromissos/google/conectar")
+@router.post(
+    "/compromissos/google/conectar",
+    dependencies=[Depends(require_feature("google_calendar_sync"))],
+)
 def conectar_google_calendar(*, db: Session = Depends(get_database), usuario_id: UUID):
-    """Inicia processo de conexão com Google Calendar."""
+    """
+    Inicia processo de conexão com Google Calendar.
+
+    Requer: Feature 'google_calendar_sync' no plano
+    """
     # Verificar se usuário existe
     db_user = user.get(db, id=usuario_id)
     if not db_user:
@@ -257,24 +280,40 @@ def callback_google_calendar(
     state: str = Query(..., description="ID do usuário"),
 ):
     """Callback do OAuth2 Google."""
-    auth = google_calendar_service.handle_oauth_callback(db, code, state)
+    try:
+        auth = google_calendar_service.handle_oauth_callback(db, code, state)
 
-    if not auth:
+        if not auth:
+            raise HTTPException(
+                status_code=400, detail="Erro ao processar autorização Google"
+            )
+
+        # Redirecionar para frontend com sucesso
+        return RedirectResponse(
+            url="http://localhost:5173/dashboard?google_connected=true", status_code=302
+        )
+    except Exception as e:
+        import traceback
+
+        print(f"Erro no callback Google: {str(e)}")
+        print(traceback.format_exc())
         raise HTTPException(
-            status_code=400, detail="Erro ao processar autorização Google"
+            status_code=400, detail=f"Erro ao processar autorização: {str(e)}"
         )
 
-    # Redirecionar para frontend com sucesso
-    return RedirectResponse(
-        url="http://localhost:5173/dashboard?google_connected=true", status_code=302
-    )
 
-
-@router.post("/compromissos/google/sincronizar")
+@router.post(
+    "/compromissos/google/sincronizar",
+    dependencies=[Depends(require_feature("google_calendar_sync"))],
+)
 def sincronizar_google_calendar(
     *, db: Session = Depends(get_database), usuario_id: UUID
 ):
-    """Força sincronização com Google Calendar."""
+    """
+    Força sincronização com Google Calendar.
+
+    Requer: Feature 'google_calendar_sync' no plano
+    """
     # Verificar se usuário tem Google conectado
     google_auth = user_google_auth.get_by_user(db, usuario_id=usuario_id)
     if not google_auth or not google_auth.ativo:

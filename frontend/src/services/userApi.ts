@@ -68,6 +68,24 @@ export interface ChangePasswordData {
   new_password: string;
 }
 
+export interface UserPhone {
+  id: string;
+  user_id: string;
+  phone_number: string;
+  is_primary: boolean;
+  is_verified: boolean;
+  is_active: boolean;
+  verified_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UserPhoneListResponse {
+  phones: UserPhone[];
+  total: number;
+  primary_phone: UserPhone | null;
+}
+
 class UserApi {
   // Get current user basic info
   async getCurrentUser(): Promise<User> {
@@ -144,6 +162,108 @@ class UserApi {
   // Format datetime
   formatDateTime(dateString: string): string {
     return new Date(dateString).toLocaleString('pt-BR');
+  }
+
+  // ============================================================================
+  // Phone Management Methods
+  // ============================================================================
+
+  // Get all user phones
+  async getUserPhones(): Promise<UserPhoneListResponse> {
+    const response = await api.get('/user/phones/');
+    return response.data;
+  }
+
+  // Get primary phone
+  async getPrimaryPhone(): Promise<UserPhone> {
+    const response = await api.get('/user/phones/primary');
+    return response.data;
+  }
+
+  // Add new phone
+  async addPhone(phoneNumber: string, isPrimary: boolean = false): Promise<UserPhone> {
+    const cleaned = phoneNumber.replace(/\D/g, '');
+    const response = await api.post('/user/phones/', {
+      phone_number: cleaned,
+      is_primary: isPrimary,
+    });
+    return response.data;
+  }
+
+  // Delete phone
+  async deletePhone(phoneId: string): Promise<void> {
+    await api.delete(`/user/phones/${phoneId}`);
+  }
+
+  // Set phone as primary
+  async setPhonePrimary(phoneId: string): Promise<UserPhone> {
+    const response = await api.patch(`/user/phones/${phoneId}/set-primary`);
+    return response.data;
+  }
+
+  // Deactivate phone
+  async deactivatePhone(phoneId: string): Promise<UserPhone> {
+    const response = await api.patch(`/user/phones/${phoneId}/deactivate`);
+    return response.data;
+  }
+
+  // Activate phone
+  async activatePhone(phoneId: string): Promise<UserPhone> {
+    const response = await api.patch(`/user/phones/${phoneId}/activate`);
+    return response.data;
+  }
+
+  // Request phone verification
+  async requestPhoneVerification(phoneId: string): Promise<{ message: string; code?: string; expires_in_minutes: number }> {
+    const response = await api.post(`/user/phones/${phoneId}/request-verification`);
+    return response.data;
+  }
+
+  // Verify phone with code
+  async verifyPhone(phoneId: string, verificationCode: string): Promise<UserPhone> {
+    const response = await api.post(`/user/phones/${phoneId}/verify`, {
+      phone_id: phoneId,
+      verification_token: verificationCode,
+    });
+    return response.data;
+  }
+
+  // Format phone number for display
+  formatPhoneNumber(phone: string): string {
+    if (!phone) return 'Não informado';
+    const cleaned = phone.replace(/\D/g, '');
+
+    if (cleaned.length === 11) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
+    }
+    if (cleaned.length === 10) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6)}`;
+    }
+
+    return phone;
+  }
+
+  // Format phone input (para input field)
+  formatPhoneInput(value: string): string {
+    const cleaned = value.replace(/\D/g, '');
+
+    if (cleaned.length <= 2) {
+      return cleaned;
+    }
+    if (cleaned.length <= 7) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
+    }
+    if (cleaned.length <= 11) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
+    }
+
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7, 11)}`;
+  }
+
+  // Validate phone format
+  validatePhone(phone: string): boolean {
+    const cleaned = phone.replace(/\D/g, '');
+    return cleaned.length === 10 || cleaned.length === 11;
   }
 
   // Calculate plan savings (annual vs monthly)

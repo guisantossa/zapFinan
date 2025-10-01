@@ -3,12 +3,15 @@ from datetime import datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import func
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from app.core.database import get_db
+from app.core.plan_validation import require_feature
 from app.core.rate_limiter import auth_rate_limit
 from app.core.validators import format_phone, sanitize_input, validate_phone
+from app.crud.user_phone import user_phone as user_phone_crud
 from app.models.user import User
+from app.models.user_phone import UserPhone
 from app.schemas.n8n import (
     CategoryFilterRequest,
     CategoryFilterResponse,
@@ -79,7 +82,7 @@ async def lookup_user(
 
     try:
         if search_type == "phone":
-            # Phone search
+            # Phone search using UserPhone table
             phone_validation = validate_phone(query)
             if not phone_validation["is_valid"]:
                 return UserLookupResponse(
@@ -88,12 +91,26 @@ async def lookup_user(
                 )
 
             formatted_phone = format_phone(query)
-            user = db.query(User).filter(User.telefone == formatted_phone).first()
+            # Search in UserPhone table
+            user_phone = (
+                db.query(UserPhone)
+                .filter(UserPhone.phone_number == formatted_phone)
+                .filter(UserPhone.is_active.is_(True))
+                .first()
+            )
+            if user_phone:
+                user = db.query(User).filter(User.id == user_phone.user_id).first()
+            else:
+                user = None
 
         elif search_type == "lid":
-            # LID search - remove @ if present and search exactly
+            # LID search via UserPhone table
             clean_lid = query.lstrip("@")
-            user = db.query(User).filter(User.lid == clean_lid).first()
+            user_phone = user_phone_crud.get_by_lid(db, lid=clean_lid)
+            if user_phone:
+                user = db.query(User).filter(User.id == user_phone.user_id).first()
+            else:
+                user = None
 
         elif search_type == "name":
             # Name search - partial match, case-insensitive
@@ -111,12 +128,21 @@ async def lookup_user(
 
         if user:
             # User found
+            # Get primary phone with lid
+            primary_phone_obj = None
+            for phone in user.phones:
+                if phone.is_primary and phone.is_active:
+                    primary_phone_obj = phone
+                    break
+
             user_data = UserLookupData(
                 id=user.id,
-                telefone=user.telefone,
+                telefone=user.primary_phone,  # Usa primary_phone da tabela user_phones
                 nome=user.nome,
                 email=user.email,
-                lid=user.lid,
+                lid=(
+                    primary_phone_obj.lid if primary_phone_obj else None
+                ),  # LID do telefone principal
                 is_active=user.is_active,
                 is_verified=user.is_verified,
                 data_inicio=user.data_inicio,
@@ -298,6 +324,7 @@ async def get_all_categories_structured(db: Session = Depends(get_db)):
     "/transaction/create",
     response_model=N8NTransactionResponse,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(require_feature("transactions"))],
 )
 @auth_rate_limit()
 async def create_transaction(
@@ -329,7 +356,7 @@ async def create_transaction(
             user_identification_method = "user_id"
 
         elif transaction_data.telefone:
-            # Phone lookup
+            # Phone lookup using UserPhone table
             phone_validation = validate_phone(transaction_data.telefone)
             if not phone_validation["is_valid"]:
                 raise HTTPException(
@@ -341,13 +368,26 @@ async def create_transaction(
                 )
 
             formatted_phone = format_phone(transaction_data.telefone)
-            user = db.query(User).filter(User.telefone == formatted_phone).first()
+            user_phone = (
+                db.query(UserPhone)
+                .filter(UserPhone.phone_number == formatted_phone)
+                .filter(UserPhone.is_active.is_(True))
+                .first()
+            )
+            if user_phone:
+                user = db.query(User).filter(User.id == user_phone.user_id).first()
+            else:
+                user = None
             user_identification_method = "phone"
 
         elif transaction_data.lid:
-            # LID lookup
+            # LID lookup via UserPhone table
             clean_lid = transaction_data.lid.lstrip("@")
-            user = db.query(User).filter(User.lid == clean_lid).first()
+            user_phone = user_phone_crud.get_by_lid(db, lid=clean_lid)
+            if user_phone:
+                user = db.query(User).filter(User.id == user_phone.user_id).first()
+            else:
+                user = None
             user_identification_method = "lid"
 
         if not user:
@@ -503,9 +543,7 @@ async def create_transaction(
                     "tipo": cat.tipo,
                 }
 
-        success_message = (
-            f"Transaction created successfully for user {user.nome or user.telefone}"
-        )
+        success_message = f"Transaction created successfully for user {user.nome or user.primary_phone or 'Unknown'}"
         if categoria_sugerida:
             success_message += (
                 f" with auto-suggested category '{categoria_sugerida['nome']}'"
@@ -537,6 +575,7 @@ async def create_transaction(
     "/budget/create",
     response_model=N8NBudgetResponse,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(require_feature("budgets"))],
 )
 @auth_rate_limit()
 async def create_budget(
@@ -566,7 +605,7 @@ async def create_budget(
             user_identification_method = "user_id"
 
         elif budget_data.telefone:
-            # Phone lookup
+            # Phone lookup using UserPhone table
             phone_validation = validate_phone(budget_data.telefone)
             if not phone_validation["is_valid"]:
                 raise HTTPException(
@@ -578,13 +617,26 @@ async def create_budget(
                 )
 
             formatted_phone = format_phone(budget_data.telefone)
-            user = db.query(User).filter(User.telefone == formatted_phone).first()
+            user_phone = (
+                db.query(UserPhone)
+                .filter(UserPhone.phone_number == formatted_phone)
+                .filter(UserPhone.is_active.is_(True))
+                .first()
+            )
+            if user_phone:
+                user = db.query(User).filter(User.id == user_phone.user_id).first()
+            else:
+                user = None
             user_identification_method = "phone"
 
         elif budget_data.lid:
-            # LID lookup
+            # LID lookup via UserPhone table
             clean_lid = budget_data.lid.lstrip("@")
-            user = db.query(User).filter(User.lid == clean_lid).first()
+            user_phone = user_phone_crud.get_by_lid(db, lid=clean_lid)
+            if user_phone:
+                user = db.query(User).filter(User.id == user_phone.user_id).first()
+            else:
+                user = None
             user_identification_method = "lid"
 
         if not user:
@@ -716,7 +768,7 @@ async def create_budget(
                 "data_fim": initial_period.data_fim.isoformat(),
             }
 
-        success_message = f"Budget '{new_budget.nome}' created successfully for user {user.nome or user.telefone}"
+        success_message = f"Budget '{new_budget.nome}' created successfully for user {user.nome or user.primary_phone or 'Unknown'}"
         if initial_period:
             success_message += f" with {new_budget.periodicidade} period for {initial_period.mes}/{initial_period.ano}"
 
@@ -746,6 +798,7 @@ async def create_budget(
     "/compromisso/create",
     response_model=N8NCommitmentResponse,
     status_code=status.HTTP_201_CREATED,
+    dependencies=[Depends(require_feature("commitments"))],
 )
 @auth_rate_limit()
 async def create_commitment_for_n8n(
@@ -771,8 +824,13 @@ async def create_commitment_for_n8n(
         user = None
 
         if commitment_data.usuario_id:
-            # Direct user lookup by ID
-            user = db.query(User).filter(User.id == commitment_data.usuario_id).first()
+            # Direct user lookup by ID with plan
+            user = (
+                db.query(User)
+                .options(joinedload(User.plano))
+                .filter(User.id == commitment_data.usuario_id)
+                .first()
+            )
             if not user:
                 raise HTTPException(
                     status_code=status.HTTP_404_NOT_FOUND,
@@ -782,10 +840,26 @@ async def create_commitment_for_n8n(
                     },
                 )
         else:
-            # User lookup by phone or lid
+            # User lookup by phone or lid with plan
             if commitment_data.telefone:
                 phone = format_phone(commitment_data.telefone)
-                user = db.query(User).filter(User.telefone == phone).first()
+                # Search in UserPhone table
+                user_phone = (
+                    db.query(UserPhone)
+                    .filter(UserPhone.phone_number == phone)
+                    .filter(UserPhone.is_active.is_(True))
+                    .first()
+                )
+                if user_phone:
+                    user = (
+                        db.query(User)
+                        .options(joinedload(User.plano))
+                        .filter(User.id == user_phone.user_id)
+                        .first()
+                    )
+                else:
+                    user = None
+
                 if not user:
                     raise HTTPException(
                         status_code=status.HTTP_404_NOT_FOUND,
@@ -796,7 +870,18 @@ async def create_commitment_for_n8n(
                     )
             elif commitment_data.lid:
                 lid = commitment_data.lid.lstrip("@")  # Remove @ if present
-                user = db.query(User).filter(User.lid == lid).first()
+                # LID lookup via UserPhone table
+                user_phone = user_phone_crud.get_by_lid(db, lid=lid)
+                if user_phone:
+                    user = (
+                        db.query(User)
+                        .options(joinedload(User.plano))
+                        .filter(User.id == user_phone.user_id)
+                        .first()
+                    )
+                else:
+                    user = None
+
                 if not user:
                     raise HTTPException(
                         status_code=status.HTTP_404_NOT_FOUND,
@@ -928,6 +1013,17 @@ async def create_commitment_for_n8n(
         google_event_id = None
 
         if commitment_data.sincronizar_google:
+            # Check if user has Google Calendar sync feature
+            if not user.plano or not user.plano.google_calendar_sync:
+                raise HTTPException(
+                    status_code=status.HTTP_402_PAYMENT_REQUIRED,
+                    detail={
+                        "error_code": "FEATURE_NOT_AVAILABLE",
+                        "message": "Google Calendar sync requires upgrade to a plan with this feature",
+                        "required_feature": "google_calendar_sync",
+                    },
+                )
+
             from app.crud.commitment import user_google_auth
             from app.services.google_calendar_service import google_calendar_service
 
@@ -962,7 +1058,7 @@ async def create_commitment_for_n8n(
             "criado_em": new_commitment.criado_em.isoformat(),
         }
 
-        success_message = f"Commitment '{new_commitment.titulo}' created successfully for user {user.nome or user.telefone}"
+        success_message = f"Commitment '{new_commitment.titulo}' created successfully for user {user.nome or user.primary_phone or 'Unknown'}"
         if google_synced:
             success_message += " and synced to Google Calendar"
         if recurrence_created:
@@ -997,6 +1093,7 @@ async def create_commitment_for_n8n(
     "/relatorio/generate",
     response_model=N8NReportResponse,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(require_feature("reports"))],
 )
 @auth_rate_limit()
 async def generate_report_for_n8n(
@@ -1034,7 +1131,18 @@ async def generate_report_for_n8n(
             # User lookup by phone or lid
             if report_data.telefone:
                 phone = format_phone(report_data.telefone)
-                user = db.query(User).filter(User.telefone == phone).first()
+                # Search in UserPhone table
+                user_phone = (
+                    db.query(UserPhone)
+                    .filter(UserPhone.phone_number == phone)
+                    .filter(UserPhone.is_active.is_(True))
+                    .first()
+                )
+                if user_phone:
+                    user = db.query(User).filter(User.id == user_phone.user_id).first()
+                else:
+                    user = None
+
                 if not user:
                     raise HTTPException(
                         status_code=status.HTTP_404_NOT_FOUND,
@@ -1045,7 +1153,13 @@ async def generate_report_for_n8n(
                     )
             elif report_data.lid:
                 lid = report_data.lid.lstrip("@")  # Remove @ if present
-                user = db.query(User).filter(User.lid == lid).first()
+                # LID lookup via UserPhone table
+                user_phone = user_phone_crud.get_by_lid(db, lid=lid)
+                if user_phone:
+                    user = db.query(User).filter(User.id == user_phone.user_id).first()
+                else:
+                    user = None
+
                 if not user:
                     raise HTTPException(
                         status_code=status.HTTP_404_NOT_FOUND,

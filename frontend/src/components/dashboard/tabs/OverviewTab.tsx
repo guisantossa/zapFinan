@@ -14,6 +14,7 @@ import { BarChartCard } from '../BarChartCard';
 import { PieChartCard } from '../PieChartCard';
 import { ModernTransactionTable } from '../ModernTransactionTable';
 import { CategoryRanking } from '../CategoryRanking';
+import { UsageSummaryCard } from '../../plans/UsageSummaryCard';
 import { dashboardApi } from '../../../services/dashboardApi';
 
 interface OverviewTabProps {
@@ -240,19 +241,29 @@ export function OverviewTab({ data, comparativo, enhancedStats, isLoading }: Ove
 
       {/* Bottom Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Transaction Table - takes 2 columns */}
-        <div className="lg:col-span-2">
+        {/* Left Column - Transaction Table */}
+        <div className="lg:col-span-2 space-y-8">
           <ModernTransactionTable />
         </div>
 
-        {/* Category Ranking - takes 1 column */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-        >
-          <CategoryRanking />
-        </motion.div>
+        {/* Right Column - Category Ranking & Usage Summary */}
+        <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            <CategoryRanking />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <UsageSummaryCard />
+          </motion.div>
+        </div>
       </div>
     </div>
   );
