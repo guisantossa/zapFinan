@@ -22,7 +22,11 @@ const menuItems: MenuItem[] = [
   { id: '/dashboard/relatorios', label: 'Relatórios', icon: BarChart, feature: 'reports' },
 ];
 
-export function ModernSidebar() {
+interface ModernSidebarProps {
+  onClose?: () => void;
+}
+
+export function ModernSidebar({ onClose }: ModernSidebarProps = {}) {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, user } = useAuth();
@@ -39,6 +43,9 @@ export function ModernSidebar() {
         },
         duration: 5000,
       });
+    } else if (onClose) {
+      // Fechar sidebar mobile após clicar
+      onClose();
     }
   };
 
@@ -47,7 +54,7 @@ export function ModernSidebar() {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed left-0 top-0 h-full w-72 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-200/50 dark:border-gray-700/50"
+      className="h-full w-72 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-200/50 dark:border-gray-700/50 flex flex-col overflow-y-auto"
       style={{
         background: 'var(--glass-bg)',
         backdropFilter: 'var(--backdrop-blur)',
@@ -77,7 +84,7 @@ export function ModernSidebar() {
       </div>
 
       {/* Menu Items */}
-      <nav className="p-6 space-y-2 flex-1">
+      <nav className="p-6 space-y-2 flex-1 overflow-y-auto">
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.id;

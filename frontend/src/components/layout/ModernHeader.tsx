@@ -1,4 +1,4 @@
-import { Bell, User, LogOut, Moon, Sun, Settings } from 'lucide-react';
+import { Bell, User, LogOut, Moon, Sun, Settings, Menu } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
@@ -13,23 +13,36 @@ import { Avatar, AvatarFallback } from '../ui/avatar';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 
-export function ModernHeader() {
+interface ModernHeaderProps {
+  onMenuClick?: () => void;
+}
+
+export function ModernHeader({ onMenuClick }: ModernHeaderProps = {}) {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <motion.header 
+    <motion.div
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-0 right-0 left-72 h-20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 z-50"
-      style={{ 
+      className="w-full h-20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50"
+      style={{
         background: 'var(--glass-bg)',
         backdropFilter: 'var(--backdrop-blur)',
         borderColor: 'var(--glass-border)'
       }}
     >
-      <div className="flex items-center justify-end px-8 h-full w-full">
+      <div className="flex items-center justify-between lg:justify-end px-4 lg:px-8 h-full w-full">
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onMenuClick}
+          className="lg:hidden rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          <Menu className="w-6 h-6" />
+        </Button>
         {/* Actions */}
         <div className="flex items-center space-x-4">
           {/* Dark Mode Toggle */}
@@ -131,6 +144,6 @@ export function ModernHeader() {
           </motion.div>
         </div>
       </div>
-    </motion.header>
+    </motion.div>
   );
 }
