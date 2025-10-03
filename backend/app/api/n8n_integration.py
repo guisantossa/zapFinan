@@ -1323,12 +1323,29 @@ async def generate_report_for_n8n(
 
         # Step 5: Apply category filters
         filtered_category_ids = []
+        found_categories = []
+        not_found_categories = []
+
         if report_data.categorias_nomes:
             for categoria_nome in report_data.categorias_nomes:
                 # Use flexible category search
                 cat = find_category_by_name_flexible(db, categoria_nome)
                 if cat:
                     filtered_category_ids.append(cat.id)
+                    found_categories.append(f"{cat.nome} (ID: {cat.id})")
+                else:
+                    not_found_categories.append(categoria_nome)
+
+            # Debug logging
+            print(
+                f"[REPORT DEBUG] Categories sent: {len(report_data.categorias_nomes)}"
+            )
+            print(
+                f"[REPORT DEBUG] Categories found: {len(filtered_category_ids)} - {found_categories}"
+            )
+            print(
+                f"[REPORT DEBUG] Categories NOT found: {len(not_found_categories)} - {not_found_categories}"
+            )
 
             if filtered_category_ids:
                 base_query = base_query.filter(
@@ -1351,10 +1368,16 @@ async def generate_report_for_n8n(
 
         transactions = transactions_query.all()
 
+        # Debug logging
+        print(f"[REPORT DEBUG] Total transactions found: {len(transactions)}")
+        print(f"[REPORT DEBUG] Period: {data_inicio} to {data_fim}")
+
         # Step 7: Calculate summary data
         total_receitas = 0.0
         total_despesas = 0.0
-        category_data = {}
+        category_data = (
+            {}
+        )  # Key: (categoria_nome, tipo) to allow same category for receita/despesa
 
         for transaction in transactions:
             valor = float(transaction.valor)
@@ -1367,32 +1390,39 @@ async def generate_report_for_n8n(
             else:
                 total_despesas += valor
 
-            # Group by category
-            if categoria_nome not in category_data:
-                category_data[categoria_nome] = {
+            # Group by category AND type (allows same category for both receita and despesa)
+            category_key = (categoria_nome, transaction.tipo)
+            if category_key not in category_data:
+                category_data[category_key] = {
                     "valor": 0.0,
                     "quantidade": 0,
-                    "tipo": transaction.tipo,
                 }
-            category_data[categoria_nome]["valor"] += valor
-            category_data[categoria_nome]["quantidade"] += 1
+            category_data[category_key]["valor"] += valor
+            category_data[category_key]["quantidade"] += 1
 
         saldo = total_receitas - total_despesas
 
         # Step 8: Prepare category breakdown
         por_categoria = []
-        for categoria, data in category_data.items():
+        for (categoria_nome, tipo), data in category_data.items():
             por_categoria.append(
                 {
-                    "categoria": categoria,
+                    "categoria": categoria_nome,
                     "valor": data["valor"],
                     "quantidade": data["quantidade"],
-                    "tipo": data["tipo"],
+                    "tipo": tipo,
                 }
             )
 
         # Sort by value (descending)
         por_categoria.sort(key=lambda x: x["valor"], reverse=True)
+
+        # Debug logging
+        print(f"[REPORT DEBUG] Categories in breakdown: {len(por_categoria)}")
+        for cat in por_categoria:
+            print(
+                f"  - {cat['categoria']} ({cat['tipo']}): {cat['quantidade']} transações, R$ {cat['valor']:.2f}"
+            )
 
         # Step 9: Prepare transaction details (if detailed format)
         transaction_details = None
