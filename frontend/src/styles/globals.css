@@ -15,9 +15,6 @@
   --success: #22C55E;
   --success-light: #4ADE80;
   --success-foreground: #ffffff;
-  --glass-bg: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --backdrop-blur: blur(16px);
   --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   --shadow-elegant: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --hover-lift: translateY(-2px);
@@ -59,8 +56,6 @@
   --card: rgba(30, 41, 59, 0.8);
   --card-blur: rgba(30, 41, 59, 0.6);
   --card-foreground: #E2E8F0;
-  --glass-bg: rgba(30, 41, 59, 0.4);
-  --glass-border: rgba(148, 163, 184, 0.1);
   --primary: #3B82F6;
   --primary-light: #60A5FA;
   --success: #10B981;

@@ -27,11 +27,6 @@ export function ModernHeader({ onMenuClick }: ModernHeaderProps = {}) {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="w-full h-20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50"
-      style={{
-        background: 'var(--glass-bg)',
-        backdropFilter: 'var(--backdrop-blur)',
-        borderColor: 'var(--glass-border)'
-      }}
     >
       <div className="flex items-center justify-between lg:justify-end px-4 lg:px-8 h-full w-full">
         {/* Mobile Menu Button */}

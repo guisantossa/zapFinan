@@ -18,7 +18,8 @@
       "Bash(uvicorn:*)",
       "Bash(poetry run alembic:*)",
       "Bash(find:*)",
-      "Bash(alembic upgrade:*)"
+      "Bash(alembic upgrade:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []

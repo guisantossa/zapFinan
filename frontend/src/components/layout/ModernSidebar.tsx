@@ -51,15 +51,10 @@ export function ModernSidebar({ onClose }: ModernSidebarProps = {}) {
 
   return (
     <motion.div
-      initial={{ x: -100, opacity: 0 }}
+      initial={{opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="h-full w-72 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-200/50 dark:border-gray-700/50 flex flex-col overflow-y-auto"
-      style={{
-        background: 'var(--glass-bg)',
-        backdropFilter: 'var(--backdrop-blur)',
-        borderColor: 'var(--glass-border)'
-      }}
+      className="h-screen w-72 bg-white dark:bg-slate-900 border-r border-gray-200/50 dark:border-gray-700/50 flex flex-col overflow-y-auto"
     >
       {/* Logo */}
       <div className="p-8 border-b border-gray-200/30 dark:border-gray-700/30">
