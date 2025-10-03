@@ -8,7 +8,7 @@ from typing import Callable
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.core.auth import get_current_user
+from app.core.api_key_auth import get_current_user_flexible
 from app.core.database import get_db
 from app.models.user import User
 
@@ -42,7 +42,7 @@ def require_feature(feature_name: str):
     """
 
     async def _validate_feature(
-        current_user: User = Depends(get_current_user),
+        current_user: User = Depends(get_current_user_flexible),
     ):
         # Verificar se usuário tem plano
         if not current_user.plano:
@@ -107,7 +107,7 @@ def require_limit(limit_name: str, count_func: Callable):
     """
 
     async def _validate_limit(
-        current_user: User = Depends(get_current_user),
+        current_user: User = Depends(get_current_user_flexible),
         db: Session = Depends(get_db),
     ):
         # Verificar se usuário tem plano

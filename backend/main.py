@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi.errors import RateLimitExceeded
 
+from app.api.api_keys import router as api_keys_router
 from app.api.budget import router as budget_router
 from app.api.categoria import router as categoria_router
 from app.api.commitment import router as commitment_router
@@ -38,6 +39,7 @@ app.include_router(
     user_settings_router, prefix="/user/settings", tags=["user-settings"]
 )
 app.include_router(user_phones_router, prefix="/user/phones", tags=["user-phones"])
+app.include_router(api_keys_router, prefix="/api-keys", tags=["api-keys"])
 app.include_router(dashboard_router, tags=["dashboard"])
 app.include_router(transactions_router, prefix="/transactions", tags=["transactions"])
 app.include_router(plans_router, prefix="/plans", tags=["plans"])

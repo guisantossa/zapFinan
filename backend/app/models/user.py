@@ -78,6 +78,11 @@ class User(Base):
         cascade="all, delete-orphan",
         lazy="selectin",  # Carrega phones automaticamente para evitar N+1
     )
+    api_keys = relationship(
+        "APIKey",
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
 
     # Computed properties for backward compatibility
     @property

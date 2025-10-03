@@ -6,7 +6,6 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session, joinedload
 
 from app.core.database import get_db
-from app.core.plan_validation import require_feature
 from app.core.rate_limiter import auth_rate_limit
 from app.core.validators import format_phone, sanitize_input, validate_phone
 from app.crud.user_phone import user_phone as user_phone_crud
@@ -324,7 +323,6 @@ async def get_all_categories_structured(db: Session = Depends(get_db)):
     "/transaction/create",
     response_model=N8NTransactionResponse,
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Depends(require_feature("transactions"))],
 )
 @auth_rate_limit()
 async def create_transaction(
@@ -409,6 +407,26 @@ async def create_transaction(
                 detail={
                     "error_code": "USER_INACTIVE",
                     "message": "User account is not active",
+                },
+            )
+
+        # Validate user has permission for transactions feature
+        if not user.plano:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail={
+                    "error_code": "NO_PLAN",
+                    "message": "User has no active plan",
+                },
+            )
+
+        if not user.plano.has_feature("transactions"):
+            raise HTTPException(
+                status_code=status.HTTP_402_PAYMENT_REQUIRED,
+                detail={
+                    "error_code": "FEATURE_NOT_AVAILABLE",
+                    "message": "User plan does not support transactions feature",
+                    "required_feature": "transactions",
                 },
             )
 
@@ -575,7 +593,6 @@ async def create_transaction(
     "/budget/create",
     response_model=N8NBudgetResponse,
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Depends(require_feature("budgets"))],
 )
 @auth_rate_limit()
 async def create_budget(
@@ -658,6 +675,26 @@ async def create_budget(
                 detail={
                     "error_code": "USER_INACTIVE",
                     "message": "User account is not active",
+                },
+            )
+
+        # Validate user has permission for budgets feature
+        if not user.plano:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail={
+                    "error_code": "NO_PLAN",
+                    "message": "User has no active plan",
+                },
+            )
+
+        if not user.plano.has_feature("budgets"):
+            raise HTTPException(
+                status_code=status.HTTP_402_PAYMENT_REQUIRED,
+                detail={
+                    "error_code": "FEATURE_NOT_AVAILABLE",
+                    "message": "User plan does not support budgets feature",
+                    "required_feature": "budgets",
                 },
             )
 
@@ -798,7 +835,6 @@ async def create_budget(
     "/compromisso/create",
     response_model=N8NCommitmentResponse,
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Depends(require_feature("commitments"))],
 )
 @auth_rate_limit()
 async def create_commitment_for_n8n(
@@ -898,6 +934,36 @@ async def create_commitment_for_n8n(
                         "message": "Either usuario_id, telefone, or lid must be provided",
                     },
                 )
+
+        # Validate user is active
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail={
+                    "error_code": "USER_INACTIVE",
+                    "message": "User account is not active",
+                },
+            )
+
+        # Validate user has permission for commitments feature
+        if not user.plano:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail={
+                    "error_code": "NO_PLAN",
+                    "message": "User has no active plan",
+                },
+            )
+
+        if not user.plano.has_feature("commitments"):
+            raise HTTPException(
+                status_code=status.HTTP_402_PAYMENT_REQUIRED,
+                detail={
+                    "error_code": "FEATURE_NOT_AVAILABLE",
+                    "message": "User plan does not support commitments feature",
+                    "required_feature": "commitments",
+                },
+            )
 
         # Step 2: Parse and validate date/time
         try:
@@ -1093,7 +1159,6 @@ async def create_commitment_for_n8n(
     "/relatorio/generate",
     response_model=N8NReportResponse,
     status_code=status.HTTP_200_OK,
-    dependencies=[Depends(require_feature("reports"))],
 )
 @auth_rate_limit()
 async def generate_report_for_n8n(
@@ -1176,6 +1241,36 @@ async def generate_report_for_n8n(
                         "message": "Either usuario_id, telefone, or lid must be provided",
                     },
                 )
+
+        # Validate user is active
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail={
+                    "error_code": "USER_INACTIVE",
+                    "message": "User account is not active",
+                },
+            )
+
+        # Validate user has permission for reports feature
+        if not user.plano:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail={
+                    "error_code": "NO_PLAN",
+                    "message": "User has no active plan",
+                },
+            )
+
+        if not user.plano.has_feature("reports"):
+            raise HTTPException(
+                status_code=status.HTTP_402_PAYMENT_REQUIRED,
+                detail={
+                    "error_code": "FEATURE_NOT_AVAILABLE",
+                    "message": "User plan does not support reports feature",
+                    "required_feature": "reports",
+                },
+            )
 
         # Step 2: Parse and validate dates
         try:

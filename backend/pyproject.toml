@@ -24,10 +24,10 @@ google-auth-oauthlib = "^1.2.2"
 google-auth-httplib2 = "^0.2.0"
 google-api-python-client = "^2.183.0"
 python-jose = "^3.5.0"
-passlib = "^1.7.4"
+passlib = {version = ">=1.7.4", extras = ["bcrypt"]}
 slowapi = "^0.1.9"
 python-multipart = "^0.0.20"
-bcrypt = "^5.0.0"
+bcrypt = ">=4.0.0,<5.0.0"
 pgvector = "^0.4.1"
 httpx = "^0.25.2"
 
