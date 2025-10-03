@@ -281,8 +281,9 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
                 </Button>
               </div>
 
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="p-6 space-y-6">
+              {/* Form - Scrollable Container */}
+              <div className="max-h-[calc(90vh-200px)] overflow-y-auto px-6">
+                <form onSubmit={handleSubmit} className="py-6 space-y-6">
           {/* Basic Information */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Informações Básicas</h3> {/* Updated */}
@@ -549,7 +550,8 @@ export function CommitmentFormModal({ isOpen, onClose, commitment, onSuccess }: 
                 )}
               </Button>
             </div>
-              </form>
+                </form>
+              </div>
             </div>
           </motion.div>
         </div>

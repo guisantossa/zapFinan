@@ -2,14 +2,9 @@ import { motion } from 'motion/react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { useState, useEffect } from 'react';
+import { useEnhancedDashboard } from '../../hooks/useEnhancedDashboard';
 
-const data = [
-  { name: 'Marketing', value: 35, color: '#1E3A8A', amount: 15230 },
-  { name: 'Operacional', value: 25, color: '#22C55E', amount: 10890 },
-  { name: 'Pessoal', value: 20, color: '#EF4444', amount: 8720 },
-  { name: 'Tecnologia', value: 12, color: '#F59E0B', amount: 5240 },
-  { name: 'Outros', value: 8, color: '#8B5CF6', amount: 3490 },
-];
+const colors = ['#1E3A8A', '#22C55E', '#EF4444', '#F59E0B', '#8B5CF6', '#EC4899', '#06B6D4', '#84CC16'];
 
 const RADIAN = Math.PI / 180;
 
@@ -67,6 +62,16 @@ const AnimatedPieSlice = (props: any) => {
 
 export function AnimatedPieChart() {
   const [isVisible, setIsVisible] = useState(false);
+  const { data: dashboardData } = useEnhancedDashboard();
+
+  // Prepare chart data from real dashboard data
+  const totalExpenses = dashboardData?.resumo?.total_despesas || 0;
+  const data = dashboardData?.gastos_por_categoria?.map((categoria: any, index: number) => ({
+    name: categoria.categoria,
+    value: totalExpenses > 0 ? Math.round((categoria.valor / totalExpenses) * 100) : 0,
+    amount: categoria.valor,
+    color: colors[index % colors.length]
+  })) || [];
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500);
@@ -150,7 +155,10 @@ export function AnimatedPieChart() {
               >
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total</p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  R$ 43.570
+                  {totalExpenses > 0
+                    ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalExpenses)
+                    : 'R$ 0,00'
+                  }
                 </p>
               </motion.div>
             </div>

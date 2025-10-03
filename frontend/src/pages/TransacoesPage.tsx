@@ -2,28 +2,20 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Plus, List, Grid, Download, Filter as FilterIcon, TrendingUp, TrendingDown, DollarSign, CreditCard } from 'lucide-react';
 import { PremiumSummaryCard } from '../components/dashboard/PremiumSummaryCard';
-import { toast } from 'sonner';
 import {
   TransactionStats,
   TransactionFilters,
   TransactionCard,
   TransactionTable,
-  TransactionForm,
   TransactionListSkeleton
 } from '../components/transactions';
+import { TransactionFormModal } from '../components/transactions/TransactionFormModal';
 import { useTransactions } from '../hooks/useTransactions';
 import { useTransactionFilters } from '../hooks/useTransactionFilters';
 import { useTransactionStats } from '../hooks/useTransactionStats';
 import type { Transaction, TransactionCreate, TransactionUpdate } from '../types/transaction';
 import { cn } from '../components/ui/utils';
 import { Button } from '../components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '../components/ui/dialog';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -98,7 +90,6 @@ export function TransacoesPage() {
       await createTransaction(data);
       setIsFormOpen(false);
       setEditingTransaction(null);
-      toast.success('Transação criada com sucesso!');
     } catch (error) {
       // Error is handled by the hook
     } finally {
@@ -115,7 +106,6 @@ export function TransacoesPage() {
       await updateTransaction(editingTransaction.id, data);
       setIsFormOpen(false);
       setEditingTransaction(null);
-      toast.success('Transação atualizada com sucesso!');
     } catch (error) {
       // Error is handled by the hook
     } finally {
@@ -131,7 +121,6 @@ export function TransacoesPage() {
       await deleteTransaction(deletingTransaction.id);
       setIsDeleteDialogOpen(false);
       setDeletingTransaction(null);
-      toast.success('Transação excluída com sucesso!');
     } catch (error) {
       // Error is handled by the hook
     }
@@ -354,29 +343,14 @@ export function TransacoesPage() {
         )}
       </AnimatePresence>
 
-      {/* Transaction Form Dialog */}
-      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>
-              {editingTransaction ? 'Editar Transação' : 'Nova Transação'}
-            </DialogTitle>
-            <DialogDescription>
-              {editingTransaction
-                ? 'Edite os dados da transação abaixo.'
-                : 'Preencha os dados para criar uma nova transação.'
-              }
-            </DialogDescription>
-          </DialogHeader>
-
-          <TransactionForm
-            transaction={editingTransaction}
-            onSubmit={editingTransaction ? handleUpdateTransaction : handleCreateTransaction}
-            onCancel={handleCloseForm}
-            isLoading={isFormLoading}
-          />
-        </DialogContent>
-      </Dialog>
+      {/* Transaction Form Modal */}
+      <TransactionFormModal
+        isOpen={isFormOpen}
+        onClose={handleCloseForm}
+        transaction={editingTransaction}
+        onSubmit={editingTransaction ? handleUpdateTransaction : handleCreateTransaction}
+        isLoading={isFormLoading}
+      />
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
