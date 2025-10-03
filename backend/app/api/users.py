@@ -37,6 +37,7 @@ from app.core.validators import (
 from app.crud.user_phone import user_phone as user_phone_crud
 from app.models.user import User
 from app.schemas.user import (
+    ChangePasswordRequest,
     EmailVerificationRequest,
     ForgotPasswordRequest,
     LoginRequest,
@@ -358,6 +359,62 @@ async def update_current_user(
     db.refresh(current_user)
 
     return current_user
+
+
+@router.post("/change-password", response_model=dict)
+async def change_current_user_password(
+    password_data: ChangePasswordRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """
+    Change current user's password.
+    """
+    # 1. Verify current password
+    if not verify_password(password_data.current_password, current_user.senha):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect current password",
+        )
+
+    # 2. Check if new password matches confirmation
+    if password_data.new_password != password_data.confirm_new_password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="New password and confirmation do not match",
+        )
+
+    # 3. Validate new password strength
+    password_validation = validate_password_strength(password_data.new_password)
+    if not password_validation["is_valid"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "message": "New password does not meet security requirements",
+                "issues": password_validation["issues"],
+                "strength": password_validation["strength"],
+            },
+        )
+
+    # 4. Check if new password is the same as the old one
+    if verify_password(password_data.new_password, current_user.senha):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="New password cannot be the same as the old password",
+        )
+
+    # 5. Hash and update password
+    current_user.senha = get_password_hash(password_data.new_password)
+    current_user.last_password_change = datetime.utcnow()
+
+    db.commit()
+
+    # Optional: Invalidate other sessions by revoking tokens (if you have a blacklist)
+    # For now, changing the password is a good step.
+
+    return {
+        "message": "Password updated successfully. Please log in again with your new password."
+    }
 
 
 @router.post("/login", response_model=LoginResponse, status_code=status.HTTP_200_OK)

@@ -1,5 +1,7 @@
 import re
 from datetime import datetime, timedelta
+from typing import Optional
+from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import func
@@ -8,6 +10,9 @@ from sqlalchemy.orm import Session, joinedload
 from app.core.database import get_db
 from app.core.rate_limiter import auth_rate_limit
 from app.core.validators import format_phone, sanitize_input, validate_phone
+from app.crud.budget import budget as budget_crud
+from app.crud.commitment import commitment as commitment_crud
+from app.crud.transaction import transaction as transaction_crud
 from app.crud.user_phone import user_phone as user_phone_crud
 from app.models.user import User
 from app.models.user_phone import UserPhone
@@ -16,13 +21,21 @@ from app.schemas.n8n import (
     CategoryFilterResponse,
     CompactCategoryResponse,
     N8NBudgetCreate,
+    N8NBudgetDelete,
     N8NBudgetResponse,
+    N8NBudgetUpdate,
     N8NCommitmentCreate,
+    N8NCommitmentDelete,
+    N8NCommitmentMarkDone,
     N8NCommitmentResponse,
+    N8NCommitmentUpdate,
     N8NReportCreate,
     N8NReportResponse,
     N8NTransactionCreate,
+    N8NTransactionDelete,
     N8NTransactionResponse,
+    N8NTransactionUpdate,
+    N8NUpdateResponse,
     UserLookupData,
     UserLookupRequest,
     UserLookupResponse,
@@ -1471,6 +1484,641 @@ async def generate_report_for_n8n(
                 "message": f"Error generating report: {str(e)}",
             },
         )
+
+
+# ============================================================================
+# Update & Delete Endpoints
+# ============================================================================
+
+
+async def _identify_user_from_request(
+    db: Session, usuario_id: Optional[UUID], telefone: Optional[str], lid: Optional[str]
+) -> User:
+    """
+    Helper to identify user from usuario_id, telefone, or lid.
+    Raises HTTPException if user not found.
+    """
+    user = None
+
+    if usuario_id:
+        user = db.query(User).filter(User.id == usuario_id).first()
+    elif telefone:
+        formatted_phone = format_phone(telefone)
+        user_phone = (
+            db.query(UserPhone)
+            .filter(UserPhone.phone_number == formatted_phone)
+            .filter(UserPhone.is_active.is_(True))
+            .first()
+        )
+        if user_phone:
+            user = user_phone.user
+    elif lid:
+        clean_lid = sanitize_input(lid, 50).lstrip("@")
+        user_phone = (
+            db.query(UserPhone)
+            .filter(UserPhone.lid == clean_lid)
+            .filter(UserPhone.is_active.is_(True))
+            .first()
+        )
+        if user_phone:
+            user = user_phone.user
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "USER_NOT_FOUND",
+                "message": "User not found with provided identification",
+            },
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "USER_INACTIVE",
+                "message": "User account is not active",
+            },
+        )
+
+    return user
+
+
+# Commitment Update/Delete Endpoints
+
+
+@router.patch(
+    "/compromisso/update",
+    response_model=N8NUpdateResponse,
+    status_code=status.HTTP_200_OK,
+)
+@auth_rate_limit()
+async def update_commitment(
+    request: Request, update_data: N8NCommitmentUpdate, db: Session = Depends(get_db)
+):
+    """
+    Update a commitment via N8N.
+
+    Updates any provided fields. Validates user ownership.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, update_data.usuario_id, update_data.telefone, update_data.lid
+    )
+
+    # Validate user has permission for commitments feature
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("commitments_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support commitments feature",
+                "required_feature": "commitments_enabled",
+            },
+        )
+
+    # Step 2: Get commitment and verify ownership
+    commitment = commitment_crud.get(db, id=update_data.resource_id)
+    if not commitment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "COMMITMENT_NOT_FOUND",
+                "message": f"Commitment {update_data.resource_id} not found",
+            },
+        )
+
+    if commitment.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Commitment does not belong to this user",
+            },
+        )
+
+    # Step 3: Build update dict (only non-None fields)
+    update_dict = {}
+    if update_data.titulo is not None:
+        update_dict["titulo"] = update_data.titulo
+    if update_data.descricao is not None:
+        update_dict["descricao"] = update_data.descricao
+    if update_data.data is not None:
+        try:
+            event_date = datetime.strptime(update_data.data, "%Y-%m-%d").date()
+            update_dict["data"] = event_date
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={
+                    "error_code": "INVALID_DATE",
+                    "message": "Invalid date format. Use YYYY-MM-DD",
+                },
+            )
+    if update_data.hora_inicio is not None:
+        update_dict["hora_inicio"] = update_data.hora_inicio
+    if update_data.hora_fim is not None:
+        update_dict["hora_fim"] = update_data.hora_fim
+    if update_data.tipo is not None:
+        update_dict["tipo"] = update_data.tipo
+    if update_data.status is not None:
+        update_dict["status"] = update_data.status
+
+    # Step 4: Update commitment
+    updated_commitment = commitment_crud.update(
+        db, db_obj=commitment, obj_in=update_dict
+    )
+
+    return N8NUpdateResponse(
+        success=True,
+        message=f"Commitment '{updated_commitment.titulo}' updated successfully",
+        resource={
+            "id": str(updated_commitment.id),
+            "titulo": updated_commitment.titulo,
+            "status": updated_commitment.status,
+            "data": str(updated_commitment.data),
+        },
+    )
+
+
+@router.patch(
+    "/compromisso/mark-done",
+    response_model=N8NUpdateResponse,
+    status_code=status.HTTP_200_OK,
+)
+@auth_rate_limit()
+async def mark_commitment_done(
+    request: Request, mark_data: N8NCommitmentMarkDone, db: Session = Depends(get_db)
+):
+    """
+    Mark a commitment as done (shortcut endpoint).
+
+    Sets status='concluido'. Validates user ownership.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, mark_data.usuario_id, mark_data.telefone, mark_data.lid
+    )
+
+    # Validate user has permission
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("commitments_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support commitments feature",
+                "required_feature": "commitments_enabled",
+            },
+        )
+
+    # Step 2: Get commitment and verify ownership
+    commitment = commitment_crud.get(db, id=mark_data.resource_id)
+    if not commitment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "COMMITMENT_NOT_FOUND",
+                "message": f"Commitment {mark_data.resource_id} not found",
+            },
+        )
+
+    if commitment.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Commitment does not belong to this user",
+            },
+        )
+
+    # Step 3: Mark as done
+    updated_commitment = commitment_crud.update(
+        db, db_obj=commitment, obj_in={"status": "concluido"}
+    )
+
+    return N8NUpdateResponse(
+        success=True,
+        message=f"Commitment '{updated_commitment.titulo}' marked as done",
+        resource={
+            "id": str(updated_commitment.id),
+            "titulo": updated_commitment.titulo,
+            "status": updated_commitment.status,
+        },
+    )
+
+
+@router.delete(
+    "/compromisso/delete",
+    response_model=N8NUpdateResponse,
+    status_code=status.HTTP_200_OK,
+)
+@auth_rate_limit()
+async def delete_commitment(
+    request: Request, delete_data: N8NCommitmentDelete, db: Session = Depends(get_db)
+):
+    """
+    Delete a commitment via N8N.
+
+    Validates user ownership before deletion.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, delete_data.usuario_id, delete_data.telefone, delete_data.lid
+    )
+
+    # Validate user has permission
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("commitments_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support commitments feature",
+                "required_feature": "commitments_enabled",
+            },
+        )
+
+    # Step 2: Get commitment and verify ownership
+    commitment = commitment_crud.get(db, id=delete_data.resource_id)
+    if not commitment:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "COMMITMENT_NOT_FOUND",
+                "message": f"Commitment {delete_data.resource_id} not found",
+            },
+        )
+
+    if commitment.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Commitment does not belong to this user",
+            },
+        )
+
+    # Step 3: Delete commitment
+    titulo = commitment.titulo
+    commitment_crud.remove(db, id=delete_data.resource_id)
+
+    return N8NUpdateResponse(
+        success=True,
+        message=f"Commitment '{titulo}' deleted successfully",
+        resource=None,
+    )
+
+
+# Budget Update/Delete Endpoints
+
+
+@router.patch(
+    "/budget/update", response_model=N8NUpdateResponse, status_code=status.HTTP_200_OK
+)
+@auth_rate_limit()
+async def update_budget(
+    request: Request, update_data: N8NBudgetUpdate, db: Session = Depends(get_db)
+):
+    """
+    Update a budget via N8N.
+
+    Updates any provided fields. Validates user ownership.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, update_data.usuario_id, update_data.telefone, update_data.lid
+    )
+
+    # Validate user has permission
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("budgets_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support budgets feature",
+                "required_feature": "budgets_enabled",
+            },
+        )
+
+    # Step 2: Get budget and verify ownership
+    budget = budget_crud.get(db, id=update_data.resource_id)
+    if not budget:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "BUDGET_NOT_FOUND",
+                "message": f"Budget {update_data.resource_id} not found",
+            },
+        )
+
+    if budget.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Budget does not belong to this user",
+            },
+        )
+
+    # Step 3: Build update dict
+    update_dict = {}
+    if update_data.nome is not None:
+        update_dict["nome"] = update_data.nome
+    if update_data.valor_limite is not None:
+        update_dict["valor_limite"] = update_data.valor_limite
+    if update_data.notificar_em is not None:
+        update_dict["notificar_em"] = update_data.notificar_em
+
+    # Handle category update
+    if update_data.categoria_id is not None:
+        update_dict["categoria_id"] = update_data.categoria_id
+    elif update_data.categoria_nome is not None:
+        cat = find_category_by_name_flexible(
+            db, categoria_nome=update_data.categoria_nome, tipo="despesa"
+        )
+        if cat:
+            update_dict["categoria_id"] = cat.id
+
+    # Step 4: Update budget
+    updated_budget = budget_crud.update(db, db_obj=budget, obj_in=update_dict)
+
+    return N8NUpdateResponse(
+        success=True,
+        message=f"Budget '{updated_budget.nome}' updated successfully",
+        resource={
+            "id": str(updated_budget.id),
+            "nome": updated_budget.nome,
+            "valor_limite": float(updated_budget.valor_limite),
+        },
+    )
+
+
+@router.delete(
+    "/budget/delete", response_model=N8NUpdateResponse, status_code=status.HTTP_200_OK
+)
+@auth_rate_limit()
+async def delete_budget(
+    request: Request, delete_data: N8NBudgetDelete, db: Session = Depends(get_db)
+):
+    """
+    Delete a budget via N8N.
+
+    Validates user ownership before deletion.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, delete_data.usuario_id, delete_data.telefone, delete_data.lid
+    )
+
+    # Validate user has permission
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("budgets_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support budgets feature",
+                "required_feature": "budgets_enabled",
+            },
+        )
+
+    # Step 2: Get budget and verify ownership
+    budget = budget_crud.get(db, id=delete_data.resource_id)
+    if not budget:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "BUDGET_NOT_FOUND",
+                "message": f"Budget {delete_data.resource_id} not found",
+            },
+        )
+
+    if budget.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Budget does not belong to this user",
+            },
+        )
+
+    # Step 3: Delete budget
+    nome = budget.nome
+    budget_crud.remove(db, id=delete_data.resource_id)
+
+    return N8NUpdateResponse(
+        success=True, message=f"Budget '{nome}' deleted successfully", resource=None
+    )
+
+
+# Transaction Update/Delete Endpoints
+
+
+@router.patch(
+    "/transaction/update",
+    response_model=N8NUpdateResponse,
+    status_code=status.HTTP_200_OK,
+)
+@auth_rate_limit()
+async def update_transaction(
+    request: Request, update_data: N8NTransactionUpdate, db: Session = Depends(get_db)
+):
+    """
+    Update a transaction via N8N.
+
+    Updates any provided fields. Validates user ownership.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, update_data.usuario_id, update_data.telefone, update_data.lid
+    )
+
+    # Validate user has permission
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("transactions_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support transactions feature",
+                "required_feature": "transactions_enabled",
+            },
+        )
+
+    # Step 2: Get transaction and verify ownership
+    transaction = transaction_crud.get(db, id=update_data.resource_id)
+    if not transaction:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "TRANSACTION_NOT_FOUND",
+                "message": f"Transaction {update_data.resource_id} not found",
+            },
+        )
+
+    if transaction.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Transaction does not belong to this user",
+            },
+        )
+
+    # Step 3: Build update dict
+    update_dict = {}
+    if update_data.valor is not None:
+        update_dict["valor"] = update_data.valor
+    if update_data.descricao is not None:
+        update_dict["descricao"] = update_data.descricao
+    if update_data.tipo is not None:
+        update_dict["tipo"] = update_data.tipo
+    if update_data.data_transacao is not None:
+        try:
+            trans_date = datetime.strptime(
+                update_data.data_transacao, "%Y-%m-%d"
+            ).date()
+            update_dict["data_transacao"] = trans_date
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={
+                    "error_code": "INVALID_DATE",
+                    "message": "Invalid date format. Use YYYY-MM-DD",
+                },
+            )
+
+    # Handle category update
+    if update_data.categoria_id is not None:
+        update_dict["categoria_id"] = update_data.categoria_id
+    elif update_data.categoria_nome is not None:
+        tipo = update_data.tipo or transaction.tipo
+        cat = find_category_by_name_flexible(
+            db, categoria_nome=update_data.categoria_nome, tipo=tipo
+        )
+        if cat:
+            update_dict["categoria_id"] = cat.id
+
+    # Step 4: Update transaction
+    updated_transaction = transaction_crud.update(
+        db, db_obj=transaction, obj_in=update_dict
+    )
+
+    return N8NUpdateResponse(
+        success=True,
+        message="Transaction updated successfully",
+        resource={
+            "id": str(updated_transaction.id),
+            "descricao": updated_transaction.descricao,
+            "valor": float(updated_transaction.valor),
+            "tipo": updated_transaction.tipo,
+        },
+    )
+
+
+@router.delete(
+    "/transaction/delete",
+    response_model=N8NUpdateResponse,
+    status_code=status.HTTP_200_OK,
+)
+@auth_rate_limit()
+async def delete_transaction(
+    request: Request, delete_data: N8NTransactionDelete, db: Session = Depends(get_db)
+):
+    """
+    Delete a transaction via N8N.
+
+    Validates user ownership before deletion.
+    """
+    # Step 1: Identify user
+    user = await _identify_user_from_request(
+        db, delete_data.usuario_id, delete_data.telefone, delete_data.lid
+    )
+
+    # Validate user has permission
+    if not user.plano:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error_code": "NO_PLAN", "message": "User has no active plan"},
+        )
+
+    if not user.plano.has_feature("transactions_enabled"):
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail={
+                "error_code": "FEATURE_NOT_AVAILABLE",
+                "message": "User plan does not support transactions feature",
+                "required_feature": "transactions_enabled",
+            },
+        )
+
+    # Step 2: Get transaction and verify ownership
+    transaction = transaction_crud.get(db, id=delete_data.resource_id)
+    if not transaction:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "error_code": "TRANSACTION_NOT_FOUND",
+                "message": f"Transaction {delete_data.resource_id} not found",
+            },
+        )
+
+    if transaction.usuario_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={
+                "error_code": "NOT_AUTHORIZED",
+                "message": "Transaction does not belong to this user",
+            },
+        )
+
+    # Step 3: Delete transaction
+    descricao = transaction.descricao
+    transaction_crud.remove(db, id=delete_data.resource_id)
+
+    return N8NUpdateResponse(
+        success=True,
+        message=f"Transaction '{descricao}' deleted successfully",
+        resource=None,
+    )
+
+
+# ============================================================================
+# Health Check
+# ============================================================================
 
 
 @router.get("/health", status_code=status.HTTP_200_OK)

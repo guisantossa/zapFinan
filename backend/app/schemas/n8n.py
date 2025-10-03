@@ -399,3 +399,113 @@ class N8NReportError(BaseModel):
     error_code: str
     message: str
     details: Optional[Dict] = None
+
+
+# Update/Delete Schemas for N8N
+class N8NResourceIdentifier(BaseModel):
+    """Base schema for identifying resources and users in update/delete operations"""
+
+    # User identification (at least one required)
+    usuario_id: Optional[UUID] = Field(
+        None, description="User ID - can be looked up by phone/lid if not provided"
+    )
+    telefone: Optional[str] = Field(
+        None, description="User phone for lookup if usuario_id not provided"
+    )
+    lid: Optional[str] = Field(
+        None, description="User lid for lookup if usuario_id not provided"
+    )
+
+    # Resource identification
+    resource_id: UUID = Field(..., description="ID of the resource to update/delete")
+
+
+# Commitment Update Schemas
+class N8NCommitmentUpdate(N8NResourceIdentifier):
+    """Request schema for N8N commitment update"""
+
+    titulo: Optional[str] = Field(
+        None, description="New commitment title", min_length=1, max_length=200
+    )
+    descricao: Optional[str] = Field(None, description="New commitment description")
+    data: Optional[str] = Field(None, description="New date in YYYY-MM-DD format")
+    hora_inicio: Optional[str] = Field(
+        None, description="New start time in HH:MM format"
+    )
+    hora_fim: Optional[str] = Field(None, description="New end time in HH:MM format")
+    tipo: Optional[
+        Literal["reuniao", "pagamento", "evento", "lembrete", "aniversario"]
+    ] = Field(None, description="New commitment type")
+    status: Optional[Literal["agendado", "concluido", "cancelado", "adiado"]] = Field(
+        None, description="New status"
+    )
+
+
+class N8NCommitmentMarkDone(N8NResourceIdentifier):
+    """Request schema for marking commitment as done (shortcut)"""
+
+    pass  # Only needs resource_id and user identification
+
+
+class N8NCommitmentDelete(N8NResourceIdentifier):
+    """Request schema for N8N commitment deletion"""
+
+    pass  # Only needs resource_id and user identification
+
+
+# Budget Update Schemas
+class N8NBudgetUpdate(N8NResourceIdentifier):
+    """Request schema for N8N budget update"""
+
+    nome: Optional[str] = Field(
+        None, description="New budget name", min_length=1, max_length=100
+    )
+    valor_limite: Optional[float] = Field(
+        None, description="New budget limit amount", gt=0
+    )
+    categoria_id: Optional[int] = Field(None, description="New category ID")
+    categoria_nome: Optional[str] = Field(
+        None, description="New category name for lookup"
+    )
+    notificar_em: Optional[float] = Field(
+        None, description="New alert percentage threshold", ge=0, le=100
+    )
+
+
+class N8NBudgetDelete(N8NResourceIdentifier):
+    """Request schema for N8N budget deletion"""
+
+    pass  # Only needs resource_id and user identification
+
+
+# Transaction Update Schemas
+class N8NTransactionUpdate(N8NResourceIdentifier):
+    """Request schema for N8N transaction update"""
+
+    valor: Optional[float] = Field(None, description="New transaction amount", gt=0)
+    descricao: Optional[str] = Field(None, description="New transaction description")
+    tipo: Optional[Literal["despesa", "receita"]] = Field(
+        None, description="New transaction type"
+    )
+    categoria_id: Optional[int] = Field(None, description="New category ID")
+    categoria_nome: Optional[str] = Field(
+        None, description="New category name for lookup"
+    )
+    data_transacao: Optional[str] = Field(
+        None, description="New transaction date in YYYY-MM-DD format"
+    )
+
+
+class N8NTransactionDelete(N8NResourceIdentifier):
+    """Request schema for N8N transaction deletion"""
+
+    pass  # Only needs resource_id and user identification
+
+
+# Generic Success Response
+class N8NUpdateResponse(BaseModel):
+    """Generic response for update/delete operations"""
+
+    success: bool
+    message: str
+    resource: Optional[Dict] = Field(None, description="Updated resource data")

@@ -360,23 +360,30 @@ class CategoryFilterService:
         # Sort by confidence and limit results
         scored_categories.sort(key=lambda x: x["confidence"], reverse=True)
 
-        # If no matches above min_score, return all categories with low confidence
-        # This allows AI to make the decision based on full context
-        if not scored_categories:
-            for cat in categories:
-                category_name = (
-                    remove_emoji_from_name(cat.nome) if remove_emojis else cat.nome
-                )
-                scored_categories.append(
-                    {
-                        "id": cat.id,
-                        "nome": category_name,
-                        "tipo": cat.tipo,
-                        "confidence": 0.1,  # Low confidence = "not sure, let AI decide"
-                    }
-                )
+        # Check if best match is relevant (score >= 0.3)
+        # If not relevant, we'll return full category list
+        best_score = scored_categories[0]["confidence"] if scored_categories else 0.0
+        use_full_list = best_score < 0.3
 
-        # Limit to max_categories
+        # If no good matches, mark to use full list
+        if not scored_categories or use_full_list:
+            # For full list mode, we still need some categories for the response structure
+            # But the compact format will use the full list instead
+            if not scored_categories:
+                for cat in categories[:max_categories]:
+                    category_name = (
+                        remove_emoji_from_name(cat.nome) if remove_emojis else cat.nome
+                    )
+                    scored_categories.append(
+                        {
+                            "id": cat.id,
+                            "nome": category_name,
+                            "tipo": cat.tipo,
+                            "confidence": 0.1,
+                        }
+                    )
+
+        # Limit to max_categories (only used if not using full list)
         filtered_categories = scored_categories[:max_categories]
 
         # Get all categories for complete list
@@ -405,6 +412,8 @@ class CategoryFilterService:
                 "categories_filtered": filtered_count,
                 "confidence_threshold": min_score,
             },
+            "use_full_list": use_full_list,  # Indica se deve usar lista completa
+            "best_score": best_score,  # Melhor score encontrado
         }
 
     def _generate_ai_prompt(self, categories: List[Dict]) -> str:
@@ -421,7 +430,26 @@ class CategoryFilterService:
     def get_compact_format_for_ai(self, filter_result: Dict) -> Dict:
         """Generate ultra-compact format for AI to save tokens"""
         filtered = filter_result["categorias_filtradas"]
+        use_full_list = filter_result.get("use_full_list", False)
 
+        # If no relevant match found (best_score < 0.3), use complete list
+        if use_full_list:
+            return {
+                "msg_type": filter_result["tipo_sugerido"],
+                "categories": [
+                    cat["nome"]
+                    for cat in filter_result["categorias_completas"][
+                        (
+                            "despesas"
+                            if filter_result["tipo_sugerido"] == "despesa"
+                            else "receitas"
+                        )
+                    ]
+                ],
+                "full_list": True,
+            }
+
+        # If we have good matches, use filtered categories
         if len(filtered) <= 3:
             # Use only filtered categories
             return {
@@ -449,7 +477,7 @@ class CategoryFilterService:
                 "full_list": False,
             }
         else:
-            # Use complete list
+            # Use complete list if too many matches
             return {
                 "msg_type": filter_result["tipo_sugerido"],
                 "categories": [

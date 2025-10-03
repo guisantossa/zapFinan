@@ -103,6 +103,12 @@ class ResetPasswordRequest(BaseModel):
     new_password: str
 
 
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str
+    confirm_new_password: str
+
+
 # Email verification schemas
 class EmailVerificationRequest(BaseModel):
     token: str
