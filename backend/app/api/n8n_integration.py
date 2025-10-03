@@ -1323,29 +1323,34 @@ async def generate_report_for_n8n(
 
         # Step 5: Apply category filters
         filtered_category_ids = []
-        found_categories = []
-        not_found_categories = []
 
         if report_data.categorias_nomes:
-            for categoria_nome in report_data.categorias_nomes:
-                # Use flexible category search
-                cat = find_category_by_name_flexible(db, categoria_nome)
-                if cat:
-                    filtered_category_ids.append(cat.id)
-                    found_categories.append(f"{cat.nome} (ID: {cat.id})")
-                else:
-                    not_found_categories.append(categoria_nome)
+            # If tipo is "ambos", we need to search categories in both despesa and receita
+            # Otherwise, filter by the specific tipo
+            if report_data.tipo == "ambos":
+                # Search in both types
+                for categoria_nome in report_data.categorias_nomes:
+                    # Try despesa
+                    cat_despesa = find_category_by_name_flexible(
+                        db, categoria_nome, tipo="despesa"
+                    )
+                    if cat_despesa:
+                        filtered_category_ids.append(cat_despesa.id)
 
-            # Debug logging
-            print(
-                f"[REPORT DEBUG] Categories sent: {len(report_data.categorias_nomes)}"
-            )
-            print(
-                f"[REPORT DEBUG] Categories found: {len(filtered_category_ids)} - {found_categories}"
-            )
-            print(
-                f"[REPORT DEBUG] Categories NOT found: {len(not_found_categories)} - {not_found_categories}"
-            )
+                    # Try receita
+                    cat_receita = find_category_by_name_flexible(
+                        db, categoria_nome, tipo="receita"
+                    )
+                    if cat_receita:
+                        filtered_category_ids.append(cat_receita.id)
+            else:
+                # Search only in the specified tipo
+                for categoria_nome in report_data.categorias_nomes:
+                    cat = find_category_by_name_flexible(
+                        db, categoria_nome, tipo=report_data.tipo
+                    )
+                    if cat:
+                        filtered_category_ids.append(cat.id)
 
             if filtered_category_ids:
                 base_query = base_query.filter(
@@ -1367,10 +1372,6 @@ async def generate_report_for_n8n(
         )
 
         transactions = transactions_query.all()
-
-        # Debug logging
-        print(f"[REPORT DEBUG] Total transactions found: {len(transactions)}")
-        print(f"[REPORT DEBUG] Period: {data_inicio} to {data_fim}")
 
         # Step 7: Calculate summary data
         total_receitas = 0.0
@@ -1416,13 +1417,6 @@ async def generate_report_for_n8n(
 
         # Sort by value (descending)
         por_categoria.sort(key=lambda x: x["valor"], reverse=True)
-
-        # Debug logging
-        print(f"[REPORT DEBUG] Categories in breakdown: {len(por_categoria)}")
-        for cat in por_categoria:
-            print(
-                f"  - {cat['categoria']} ({cat['tipo']}): {cat['quantidade']} transações, R$ {cat['valor']:.2f}"
-            )
 
         # Step 9: Prepare transaction details (if detailed format)
         transaction_details = None
