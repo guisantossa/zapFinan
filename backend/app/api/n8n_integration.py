@@ -420,13 +420,13 @@ async def create_transaction(
                 },
             )
 
-        if not user.plano.has_feature("transactions"):
+        if not user.plano.has_feature("transactions_enabled"):
             raise HTTPException(
                 status_code=status.HTTP_402_PAYMENT_REQUIRED,
                 detail={
                     "error_code": "FEATURE_NOT_AVAILABLE",
                     "message": "User plan does not support transactions feature",
-                    "required_feature": "transactions",
+                    "required_feature": "transactions_enabled",
                 },
             )
 
@@ -688,13 +688,13 @@ async def create_budget(
                 },
             )
 
-        if not user.plano.has_feature("budgets"):
+        if not user.plano.has_feature("budgets_enabled"):
             raise HTTPException(
                 status_code=status.HTTP_402_PAYMENT_REQUIRED,
                 detail={
                     "error_code": "FEATURE_NOT_AVAILABLE",
                     "message": "User plan does not support budgets feature",
-                    "required_feature": "budgets",
+                    "required_feature": "budgets_enabled",
                 },
             )
 
@@ -955,13 +955,13 @@ async def create_commitment_for_n8n(
                 },
             )
 
-        if not user.plano.has_feature("commitments"):
+        if not user.plano.has_feature("commitments_enabled"):
             raise HTTPException(
                 status_code=status.HTTP_402_PAYMENT_REQUIRED,
                 detail={
                     "error_code": "FEATURE_NOT_AVAILABLE",
                     "message": "User plan does not support commitments feature",
-                    "required_feature": "commitments",
+                    "required_feature": "commitments_enabled",
                 },
             )
 
@@ -1262,13 +1262,13 @@ async def generate_report_for_n8n(
                 },
             )
 
-        if not user.plano.has_feature("reports"):
+        if not user.plano.has_feature("reports_advanced"):
             raise HTTPException(
                 status_code=status.HTTP_402_PAYMENT_REQUIRED,
                 detail={
                     "error_code": "FEATURE_NOT_AVAILABLE",
                     "message": "User plan does not support reports feature",
-                    "required_feature": "reports",
+                    "required_feature": "reports_advanced",
                 },
             )
 
