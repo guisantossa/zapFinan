@@ -7,9 +7,32 @@ from app.crud.category import category
 
 
 def remove_emoji_from_name(name: str) -> str:
-    """Remove emojis from category name"""
-    # Remove common category emojis and extra spaces
-    cleaned = re.sub(r"[🛒🥗🚗🎉📺📚💊🏋️🐶📄🎁📌💼🏦💵💳]", "", name)
+    """Remove all emojis from category name using comprehensive Unicode regex"""
+    # Remove all emoji characters using Unicode ranges
+    # This pattern covers all emoji ranges in Unicode
+    emoji_pattern = re.compile(
+        "["
+        "\U0001f600-\U0001f64f"  # emoticons
+        "\U0001f300-\U0001f5ff"  # symbols & pictographs
+        "\U0001f680-\U0001f6ff"  # transport & map symbols
+        "\U0001f1e0-\U0001f1ff"  # flags (iOS)
+        "\U00002500-\U00002bef"  # chinese char
+        "\U00002702-\U000027b0"
+        "\U000024c2-\U0001f251"
+        "\U0001f926-\U0001f937"
+        "\U00010000-\U0010ffff"
+        "\u2640-\u2642"
+        "\u2600-\u2b55"
+        "\u200d"
+        "\u23cf"
+        "\u23e9"
+        "\u231a"
+        "\ufe0f"  # dingbats
+        "\u3030"
+        "]+",
+        flags=re.UNICODE,
+    )
+    cleaned = emoji_pattern.sub("", name)
     cleaned = re.sub(r"\s+", " ", cleaned).strip()  # Remove extra spaces
     return cleaned
 
@@ -437,7 +460,7 @@ class CategoryFilterService:
             return {
                 "msg_type": filter_result["tipo_sugerido"],
                 "categories": [
-                    cat["nome"]
+                    remove_emoji_from_name(cat["nome"])
                     for cat in filter_result["categorias_completas"][
                         (
                             "despesas"
@@ -454,26 +477,7 @@ class CategoryFilterService:
             # Use only filtered categories
             return {
                 "msg_type": filter_result["tipo_sugerido"],
-                "categories": [
-                    cat["nome"]
-                    .replace("🛒 ", "")
-                    .replace("🥗 ", "")
-                    .replace("🚗 ", "")
-                    .replace("🎉 ", "")
-                    .replace("📺 ", "")
-                    .replace("📚 ", "")
-                    .replace("💊 ", "")
-                    .replace("🏋️ ", "")
-                    .replace("🐶 ", "")
-                    .replace("📄 ", "")
-                    .replace("🎁 ", "")
-                    .replace("📌 ", "")
-                    .replace("💼 ", "")
-                    .replace("🏦 ", "")
-                    .replace("💵 ", "")
-                    .replace("💳 ", "")
-                    for cat in filtered
-                ],
+                "categories": [remove_emoji_from_name(cat["nome"]) for cat in filtered],
                 "full_list": False,
             }
         else:
@@ -481,7 +485,7 @@ class CategoryFilterService:
             return {
                 "msg_type": filter_result["tipo_sugerido"],
                 "categories": [
-                    cat["nome"]
+                    remove_emoji_from_name(cat["nome"])
                     for cat in filter_result["categorias_completas"][
                         (
                             "despesas"
