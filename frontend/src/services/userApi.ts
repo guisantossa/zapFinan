@@ -108,8 +108,9 @@ class UserApi {
   // Change password
   async changePassword(data: ChangePasswordData): Promise<{ message: string }> {
     const response = await api.post('/user/change-password', {
-      senha: data.new_password,
-      current_password: data.current_password
+      current_password: data.current_password,
+      new_password: data.new_password,
+      confirm_new_password: data.new_password
     });
     return response.data;
   }

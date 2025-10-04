@@ -1191,14 +1191,6 @@ async def generate_report_for_n8n(
     - Real-time data aggregation
     """
     try:
-        # Debug: Log received data
-        print(
-            f"[RAW PAYLOAD DEBUG] report_data.categorias_nomes = {report_data.categorias_nomes}"
-        )
-        print(f"[RAW PAYLOAD DEBUG] type = {type(report_data.categorias_nomes)}")
-        if report_data.categorias_nomes:
-            print(f"[RAW PAYLOAD DEBUG] len = {len(report_data.categorias_nomes)}")
-            print(f"[RAW PAYLOAD DEBUG] items = {report_data.categorias_nomes}")
 
         # Step 1: Resolve the user
         user = None

@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { SyncaLandingPage } from './pages/SyncaLandingPage';
+import { NewLandingPage } from './pages/NewLandingPage';
 // ...existing code...
 // Layout Components
 import { RootLayout } from "./layouts/RootLayout";
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       // Landing page (public)
       {
         index: true,
-        element: <SyncaLandingPage />,
+        element: <NewLandingPage />,
       },
 
       // Auth routes (public)
