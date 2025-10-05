@@ -14,15 +14,23 @@ from app.schemas.transaction import TransactionCreate, TransactionUpdate
 class CRUDTransaction(CRUDBase[Transaction, TransactionCreate, TransactionUpdate]):
     def create_with_budget_update(
         self, db: Session, *, obj_in: TransactionCreate
-    ) -> Transaction:
-        """Cria transação e atualiza orçamentos automaticamente."""
+    ) -> tuple[Transaction, Optional[dict]]:
+        """
+        Cria transação e atualiza orçamentos automaticamente.
+
+        Returns:
+            tuple: (Transaction, alert_info dict ou None)
+                alert_info contém informações do alerta se houver estouro/aviso
+        """
         # Criar transação normalmente
         transaction = self.create(db, obj_in=obj_in)
+
+        alert_info = None
 
         if transaction.tipo == "despesa" and transaction.categoria_id:
             from app.services.budget_service import budget_service
 
-            budget_service.update_budget_from_transaction(
+            _, alert_info = budget_service.update_budget_from_transaction(
                 db=db,
                 usuario_id=transaction.usuario_id,
                 categoria_id=transaction.categoria_id,
@@ -31,7 +39,7 @@ class CRUDTransaction(CRUDBase[Transaction, TransactionCreate, TransactionUpdate
                 tipo=transaction.tipo,
             )
 
-        return transaction
+        return transaction, alert_info
 
     def get_by_user(
         self, db: Session, *, usuario_id: UUID, skip: int = 0, limit: int = 100

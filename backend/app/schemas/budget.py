@@ -24,6 +24,7 @@ class BudgetBase(BaseModel):
 
 class BudgetCreate(BudgetBase):
     usuario_id: UUID
+    pass
 
 
 class BudgetUpdate(BaseModel):
@@ -120,6 +121,39 @@ class BudgetSummary(BaseModel):
     periodicidade: str
     dias_restantes: Optional[int] = None
     ativo: bool
+
+    class Config:
+        from_attributes = True
+
+
+# Budget Alert Schemas
+class BudgetAlertInfo(BaseModel):
+    """Informações de alerta de orçamento quando há estouro ou aviso."""
+
+    tipo_alerta: Literal["aviso", "estouro"] = Field(
+        ...,
+        description="Tipo do alerta: 'aviso' quando atinge notificar_em%, 'estouro' quando ultrapassa 100%",
+    )
+    budget_id: UUID = Field(..., description="ID do orçamento afetado")
+    budget_nome: str = Field(..., description="Nome do orçamento")
+    categoria_id: int = Field(..., description="ID da categoria")
+    categoria_nome: str = Field(..., description="Nome da categoria")
+    valor_limite: Decimal = Field(..., description="Valor limite do orçamento")
+    valor_gasto: Decimal = Field(..., description="Valor total gasto")
+    valor_disponivel: Decimal = Field(
+        ..., description="Valor disponível (pode ser negativo em caso de estouro)"
+    )
+    percentual_gasto: Decimal = Field(..., description="Percentual gasto (0-100+)")
+    percentual_notificacao: Decimal = Field(
+        ..., description="Percentual configurado para notificação"
+    )
+    periodo_info: dict = Field(
+        ...,
+        description="Informações do período (ano, mês, data_inicio, data_fim, periodicidade)",
+    )
+    alerta_enviado: bool = Field(
+        default=False, description="Se o alerta já foi enviado anteriormente"
+    )
 
     class Config:
         from_attributes = True

@@ -18,13 +18,10 @@ httpClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken');
     if (token) {
-      
-
-      
-
+      console.log(`[HTTP] Anexando token para: ${config.url}`);
       config.headers.Authorization = `Bearer ${token}`;
     } else {
-      console.log('[HTTP] Nenhum token disponível para:', config.url);
+      console.log(`[HTTP] Nenhum token disponível para: ${config.url}`);
     }
     return config;
   },

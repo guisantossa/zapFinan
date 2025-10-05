@@ -170,6 +170,10 @@ class N8NTransactionResponse(BaseModel):
     categoria_sugerida: Optional[Dict] = Field(
         None, description="Suggested category if none provided"
     )
+    budget_alert: Optional[Dict] = Field(
+        None,
+        description="Budget alert information if expense triggers threshold or overspending",
+    )
     message: str
 
 

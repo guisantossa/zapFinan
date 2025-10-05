@@ -6,6 +6,29 @@ export interface Category {
   icone?: string;
 }
 
+export interface BudgetAlertInfo {
+  tipo_alerta: "aviso" | "estouro";
+  budget_id: string;
+  budget_nome: string;
+  categoria_id: number;
+  categoria_nome: string;
+  valor_limite: number;
+  valor_gasto: number;
+  valor_disponivel: number;
+  percentual_gasto: number;
+  percentual_notificacao: number;
+  periodo_info: {
+    ano: number;
+    mes: number;
+    quinzena?: number;
+    semana?: number;
+    data_inicio: string;
+    data_fim: string;
+    periodicidade: string;
+  };
+  alerta_enviado: boolean;
+}
+
 export interface Transaction {
   id: string;
   usuario_id: string;
@@ -13,11 +36,12 @@ export interface Transaction {
   valor: number;
   descricao: string;
   tipo: "despesa" | "receita";
-  canal?: "audioMessage" | "conversation" | "imageMessage";
+  canal?: "audioMessage" | "conversation" | "imageMessage" | "webApp";
   categoria_id?: number;
   data_transacao: string; // ISO date string
   data_registro: string; // ISO datetime string
   categoria?: Category;
+  budget_alert?: BudgetAlertInfo;
 }
 
 export interface TransactionCreate {

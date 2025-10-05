@@ -42,12 +42,18 @@ class BudgetService:
         valor: Decimal,
         data_transacao: datetime,
         tipo: str = "despesa",
-    ) -> Optional[Budget]:
-        """Atualiza orçamento quando uma nova transação é criada."""
+    ) -> tuple[Optional[Budget], Optional[dict]]:
+        """
+        Atualiza orçamento quando uma nova transação é criada.
+
+        Returns:
+            tuple: (Budget ou None, alert_info dict ou None)
+                alert_info contém informações do alerta se houver estouro/aviso
+        """
 
         # Só atualizar orçamentos para despesas
         if tipo != "despesa":
-            return None
+            return None, None
 
         # Buscar orçamento ativo para a categoria
         user_budget = budget.get_by_user_and_category(
@@ -55,7 +61,7 @@ class BudgetService:
         )
 
         if not user_budget:
-            return None
+            return None, None
 
         # Buscar período correspondente à data da transação
         current_period = budget_period.get_current_period(
@@ -68,13 +74,76 @@ class BudgetService:
                 db, budget=user_budget, target_date=data_transacao
             )
 
+        alert_info = None
+
         if current_period:
             # Atualizar valor gasto
             budget_period.update_valor_gasto(
                 db, period_id=current_period.id, valor_adicional=valor
             )
 
-        return user_budget
+            # Refresh para obter valores atualizados
+            db.refresh(current_period)
+            db.refresh(user_budget)
+
+            # Calcular percentual gasto
+            percentual_gasto = (
+                (current_period.valor_gasto / current_period.valor_limite * 100)
+                if current_period.valor_limite > 0
+                else 0
+            )
+
+            # Verificar se deve gerar alerta
+            deve_alertar = False
+            tipo_alerta = None
+
+            # Alerta de estouro (ultrapassou 100%)
+            if percentual_gasto > 100:
+                deve_alertar = True
+                tipo_alerta = "estouro"
+            # Alerta de aviso (atingiu notificar_em% e ainda não enviou alerta)
+            elif (
+                percentual_gasto >= float(user_budget.notificar_em)
+                and not current_period.alerta_enviado
+            ):
+                deve_alertar = True
+                tipo_alerta = "aviso"
+
+            # Gerar informações do alerta se necessário
+            if deve_alertar:
+                # Obter nome da categoria
+                categoria_nome = "Categoria"
+                if hasattr(user_budget, "categoria") and user_budget.categoria:
+                    categoria_nome = user_budget.categoria.nome
+
+                valor_disponivel = (
+                    current_period.valor_limite - current_period.valor_gasto
+                )
+
+                alert_info = {
+                    "tipo_alerta": tipo_alerta,
+                    "budget_id": user_budget.id,
+                    "budget_nome": user_budget.nome,
+                    "categoria_id": user_budget.categoria_id,
+                    "categoria_nome": categoria_nome,
+                    "valor_limite": current_period.valor_limite,
+                    "valor_gasto": current_period.valor_gasto,
+                    "valor_disponivel": valor_disponivel,
+                    "percentual_gasto": Decimal(str(percentual_gasto)),
+                    "percentual_notificacao": user_budget.notificar_em,
+                    "periodo_info": {
+                        "ano": current_period.ano,
+                        "mes": current_period.mes,
+                        "quinzena": current_period.quinzena,
+                        "semana": current_period.semana,
+                        "data_inicio": current_period.data_inicio.isoformat(),
+                        "data_fim": current_period.data_fim.isoformat(),
+                        "periodicidade": user_budget.periodicidade,
+                    },
+                    "alerta_enviado": current_period.alerta_enviado,
+                }
+
+        return user_budget, alert_info
 
     @staticmethod
     def get_budgets_for_alerts(db: Session, usuario_id: str) -> List[dict]:

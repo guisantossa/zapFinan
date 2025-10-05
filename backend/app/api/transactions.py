@@ -185,9 +185,16 @@ async def create_transaction(
             )
 
     # Criar transação com atualização de orçamento
-    db_transaction = transaction.create_with_budget_update(db=db, obj_in=transaction_in)
+    db_transaction, alert_info = transaction.create_with_budget_update(
+        db=db, obj_in=transaction_in
+    )
 
-    return db_transaction
+    # Adicionar alerta à resposta, se houver
+    response = TransactionWithCategory.model_validate(db_transaction)
+    if alert_info:
+        response.budget_alert = alert_info
+
+    return response
 
 
 @router.put("/{transaction_id}", response_model=TransactionWithCategory)

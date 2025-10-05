@@ -115,13 +115,13 @@ export function ModernHeader({ onMenuClick }: ModernHeaderProps = {}) {
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="rounded-xl" asChild>
-                  <Link to="/dashboard/perfil" className="flex items-center">
+                  <Link to="/perfil" className="flex items-center">
                     <User className="w-4 h-4 mr-2" />
                     Meu Perfil
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="rounded-xl" asChild>
-                  <Link to="/dashboard/configuracoes" className="flex items-center">
+                  <Link to="/configuracoes" className="flex items-center">
                     <Settings className="w-4 h-4 mr-2" />
                     Configurações
                   </Link>

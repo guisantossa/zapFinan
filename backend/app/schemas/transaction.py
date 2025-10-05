@@ -44,6 +44,7 @@ class Transaction(TransactionInDB):
 
 class TransactionWithCategory(Transaction):
     categoria: Optional["Category"] = None
+    budget_alert: Optional[dict] = None  # Informações de alerta de orçamento, se houver
 
     class Config:
         from_attributes = True

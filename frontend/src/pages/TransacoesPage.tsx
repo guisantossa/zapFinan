@@ -10,10 +10,11 @@ import {
   TransactionListSkeleton
 } from '../components/transactions';
 import { TransactionFormModal } from '../components/transactions/TransactionFormModal';
+import { BudgetAlertDialog } from '../components/budgets/BudgetAlertDialog';
 import { useTransactions } from '../hooks/useTransactions';
 import { useTransactionFilters } from '../hooks/useTransactionFilters';
 import { useTransactionStats } from '../hooks/useTransactionStats';
-import type { Transaction, TransactionCreate, TransactionUpdate } from '../types/transaction';
+import type { Transaction, TransactionCreate, TransactionUpdate, BudgetAlertInfo } from '../types/transaction';
 import { cn } from '../components/ui/utils';
 import { Button } from '../components/ui/button';
 import {
@@ -46,6 +47,8 @@ export function TransacoesPage() {
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
   const [deletingTransaction, setDeletingTransaction] = useState<Transaction | null>(null);
   const [isFormLoading, setIsFormLoading] = useState(false);
+  const [budgetAlert, setBudgetAlert] = useState<BudgetAlertInfo | null>(null);
+  const [isBudgetAlertOpen, setIsBudgetAlertOpen] = useState(false);
 
   // Hooks for data management
   const {
@@ -87,9 +90,15 @@ export function TransacoesPage() {
   const handleCreateTransaction = async (data: TransactionCreate) => {
     setIsFormLoading(true);
     try {
-      await createTransaction(data);
+      const newTransaction = await createTransaction(data);
       setIsFormOpen(false);
       setEditingTransaction(null);
+
+      // Check if there's a budget alert
+      if (newTransaction?.budget_alert) {
+        setBudgetAlert(newTransaction.budget_alert);
+        setIsBudgetAlertOpen(true);
+      }
     } catch (error) {
       // Error is handled by the hook
     } finally {
@@ -373,6 +382,16 @@ export function TransacoesPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Budget Alert Dialog */}
+      <BudgetAlertDialog
+        alert={budgetAlert}
+        isOpen={isBudgetAlertOpen}
+        onClose={() => {
+          setIsBudgetAlertOpen(false);
+          setBudgetAlert(null);
+        }}
+      />
     </motion.div>
   );
 }

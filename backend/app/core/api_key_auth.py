@@ -219,24 +219,46 @@ def get_current_user_flexible(
     """
 
     # Import here to avoid circular dependency
-    from app.core.auth import get_current_user
+    from app.core.auth import verify_token
+    from app.models.user import User
 
     user = None
 
-    # Try Bearer Token first (standard web auth)
     if credentials:
         try:
-            # Use existing JWT authentication
-            user = get_current_user(credentials=credentials, db=db)
+            # Validate JWT token manually (can't call get_current_user because it uses Depends)
+            token = credentials.credentials
+            subject = verify_token(token, "access")
+
+            if not subject:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid token",
+                )
+
+            # Get user from database directly
+            user = db.query(User).filter(User.id == subject).first()
+
+            if not user:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="User not found",
+                )
+
             logger.info(f"[DUAL_AUTH] Authenticated via Bearer token: user {user.id}")
             return user
         except HTTPException as e:
             # JWT auth failed, will try API key next
-            logger.debug(f"[DUAL_AUTH] Bearer token authentication failed: {e.detail}")
+            logger.warning(
+                f"[DUAL_AUTH] Bearer token authentication failed: {e.detail}"
+            )
             pass
         except Exception as e:
             # Unexpected error, log but continue to API key
             logger.warning(f"[DUAL_AUTH] Unexpected error in Bearer auth: {str(e)}")
+            import traceback
+
+            logger.warning(traceback.format_exc())
             pass
 
     # Try API Key fallback

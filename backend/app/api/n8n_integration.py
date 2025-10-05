@@ -524,12 +524,12 @@ async def create_transaction(
                     },
                 )
 
-        # Step 5: Create the transaction
+        # Step 5: Create the transaction with budget update
         from decimal import Decimal
 
-        from app.models.transaction import Transaction
+        from app.schemas.transaction import TransactionCreate
 
-        new_transaction = Transaction(
+        transaction_create_data = TransactionCreate(
             usuario_id=user.id,
             mensagem_original=sanitize_input(transaction_data.mensagem_original, 500),
             valor=Decimal(str(transaction_data.valor)),
@@ -540,9 +540,10 @@ async def create_transaction(
             data_transacao=data_transacao,
         )
 
-        db.add(new_transaction)
-        db.commit()
-        db.refresh(new_transaction)
+        # Create transaction with budget update and alert detection
+        new_transaction, budget_alert = transaction_crud.create_with_budget_update(
+            db=db, obj_in=transaction_create_data
+        )
 
         # Step 6: Prepare response with related data
         transaction_dict = {
@@ -580,11 +581,19 @@ async def create_transaction(
                 f" with auto-suggested category '{categoria_sugerida['nome']}'"
             )
 
+        # Add budget alert to success message if present
+        if budget_alert:
+            if budget_alert["tipo_alerta"] == "estouro":
+                success_message += f" ⚠️ BUDGET EXCEEDED for {budget_alert['categoria_nome']}! {budget_alert['percentual_gasto']:.1f}% spent"
+            else:
+                success_message += f" ⚠️ Budget alert for {budget_alert['categoria_nome']}: {budget_alert['percentual_gasto']:.1f}% spent"
+
         return N8NTransactionResponse(
             success=True,
             transaction_id=new_transaction.id,
             transaction=transaction_dict,
             categoria_sugerida=categoria_sugerida,
+            budget_alert=budget_alert,
             message=success_message,
         )
 

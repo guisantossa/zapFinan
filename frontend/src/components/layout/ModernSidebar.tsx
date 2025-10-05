@@ -16,10 +16,10 @@ type MenuItem = {
 
 const menuItems: MenuItem[] = [
   { id: '/dashboard', label: 'Dashboard', icon: Home },
-  { id: '/dashboard/transacoes', label: 'Transações', icon: CreditCard, feature: 'transactions' },
-  { id: '/dashboard/orcamentos', label: 'Orçamentos', icon: PiggyBank, feature: 'budgets' },
-  { id: '/dashboard/compromissos', label: 'Compromissos', icon: Calendar, feature: 'commitments' },
-  { id: '/dashboard/relatorios', label: 'Relatórios', icon: BarChart, feature: 'reports' },
+  { id: '/transacoes', label: 'Transações', icon: CreditCard, feature: 'transactions' },
+  { id: '/orcamentos', label: 'Orçamentos', icon: PiggyBank, feature: 'budgets' },
+  { id: '/compromissos', label: 'Compromissos', icon: Calendar, feature: 'commitments' },
+  { id: '/relatorios', label: 'Relatórios', icon: BarChart, feature: 'reports' },
 ];
 
 interface ModernSidebarProps {
@@ -71,9 +71,9 @@ export function ModernSidebar({ onClose }: ModernSidebarProps = {}) {
           </div>
           <div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] bg-clip-text text-transparent">
-              ZapFinan
+              Synca
             </h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Financial SaaS</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Controle Financeiro</p>
           </div>
         </motion.div>
       </div>

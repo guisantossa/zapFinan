@@ -14,10 +14,12 @@ const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 class CommitmentAPI {
   private async makeRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${API_BASE}${endpoint}`;
-
+    const token = localStorage.getItem('accessToken');   
+    
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
         ...options.headers,
       },
       ...options,

@@ -8,9 +8,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str
 
     # Security & Authentication
-    SECRET_KEY: str = (
-        "your-secret-key-here-change-in-production-use-openssl-rand-hex-32"
-    )
+    SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
     EMAIL_VERIFICATION_EXPIRE_HOURS: int = 24
