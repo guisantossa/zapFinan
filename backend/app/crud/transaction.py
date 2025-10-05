@@ -35,7 +35,11 @@ class CRUDTransaction(CRUDBase[Transaction, TransactionCreate, TransactionUpdate
                 usuario_id=transaction.usuario_id,
                 categoria_id=transaction.categoria_id,
                 valor=transaction.valor,
-                data_transacao=transaction.data_transacao or datetime.now(),
+                data_transacao=(
+                    datetime.combine(transaction.data_transacao, datetime.min.time())
+                    if transaction.data_transacao
+                    else datetime.now()
+                ),
                 tipo=transaction.tipo,
             )
 
