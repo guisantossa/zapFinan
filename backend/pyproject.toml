@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "zapgastos-backend"
+name = "synca-backend"
 version = "0.1.0"
-description = "ZapGastos FastAPI Backend - Personal Finance Management System"
+description = "Synca FastAPI Backend - Personal Finance Management System"
 authors = ["Your Name <your.email@example.com>"]
 package-mode = false
 
@@ -132,3 +132,4 @@ exclude_lines = [
     "raise AssertionError",
     "raise NotImplementedError",
 ]
+

@@ -8,7 +8,7 @@
       "typeVersion": 4,
       "position": [200, 300],
       "parameters": {
-        "url": "https://raw.githubusercontent.com/guilhermesaa/tmp-zapgastos/main/expressions_1000.json",
+        "url": "https://raw.githubusercontent.com/guilhermesaa/tmp-synca/main/expressions_1000.json",
         "responseFormat": "json"
       }
     },
@@ -97,3 +97,4 @@
   },
   "active": false
 }
+

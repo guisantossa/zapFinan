@@ -16,7 +16,7 @@ def print_test_result(test_name, success, message=""):
 
 
 async def test_new_auth_system():
-    print("Testing New ZapGastos Auth System")
+    print("Testing New Synca Auth System")
     print("=" * 50)
     print()
 

@@ -567,7 +567,7 @@ async def send_sms_token(
     db.commit()
 
     # TODO: Integrar com serviço de SMS (WhatsApp, Twilio, etc.)
-    # send_sms(formatted_phone, f"Your ZapGastos login code: {sms_token}")
+    # send_sms(formatted_phone, f"Your Synca login code: {sms_token}")
 
     return {"message": "SMS token sent successfully", "expires_in_minutes": 5}
 

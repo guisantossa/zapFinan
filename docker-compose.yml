@@ -5,7 +5,7 @@ services:
     build: ./frontend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`zapgastos.com.br`)"
+      - "traefik.http.routers.frontend.rule=Host(`synca.com.br`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=myresolver"
     networks:
@@ -15,7 +15,7 @@ services:
     build: ./backend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.zapgastos.com.br`)"
+      - "traefik.http.routers.backend.rule=Host(`api.synca.com.br`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
     networks:
@@ -24,3 +24,4 @@ services:
 networks:
   web:
     external: true
+

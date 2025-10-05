@@ -3,7 +3,7 @@
 Script CLI para criar System API Key do N8N.
 
 Este script cria uma API Key especial para o sistema N8N se autenticar
-ao fazer chamadas para a API do ZapGastos via webhooks do WhatsApp.
+ao fazer chamadas para a API do Synca via webhooks do WhatsApp.
 
 Uso:
     python -m scripts.create_system_key --user-id <uuid>
@@ -31,7 +31,7 @@ from app.crud.api_key import api_key as crud_api_key
 def print_banner():
     """Exibe banner do script."""
     print("\n" + "=" * 70)
-    print(" ZapGastos - Gerador de System API Key para N8N")
+    print(" Synca - Gerador de System API Key para N8N")
     print("=" * 70 + "\n")
 
 
@@ -117,14 +117,14 @@ def create_system_key(user_id_str: str, key_name: str = None, force: bool = Fals
         print("-" * 70)
         print("1. Acesse as configurações do N8N")
         print("2. Adicione variável de ambiente:")
-        print("\n   Nome:  ZAPGASTOS_API_KEY")
+        print("\n   Nome:  SYNCA_API_KEY")
         print(f"   Valor: {plain_key}")
         print("\n3. Nos HTTP Request nodes, adicione header:")
         print("\n   Nome:  X-API-Key")
-        print("   Valor: {{{{$env.ZAPGASTOS_API_KEY}}}}")
+        print("   Valor: {{{{$env.SYNCA_API_KEY}}}}")
         print("-" * 70 + "\n")
 
-        print("✅ Pronto! O N8N agora pode autenticar na API do ZapGastos.\n")
+        print("✅ Pronto! O N8N agora pode autenticar na API do Synca.\n")
 
     except Exception as e:
         print(f"\n❌ Erro ao criar System Key: {str(e)}\n")

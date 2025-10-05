@@ -3,7 +3,7 @@ ser approved Claude's plan:
 
      📋 Resumo Executivo
 
-     Implementar sistema completo para permitir que usuários gerenciem múltiplos telefones, com um telefone principal, seguindo a arquitetura do ZapGastos.
+     Implementar sistema completo para permitir que usuários gerenciem múltiplos telefones, com um telefone principal, seguindo a arquitetura do Synca.
 
      ---
      🎯 Backend (por @agent-saas-backend-architect)
@@ -492,7 +492,7 @@ ser approved Claude's plan:
 
   Agora vamos criar os componentes React. Continuando com os componentes essenciais:
 
-● Bash(mkdir -p "C:/Users/guisa/Projetos/ZapGastos/frontend/src/components/profile")
+● Bash(mkdir -p "C:/Users/guisa/Projetos/Synca/frontend/src/components/profile")
   ⎿  (No content)
 
 ● Write(frontend\src\components\profile\PhoneCard.tsx)

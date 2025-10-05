@@ -27,7 +27,7 @@ app.add_exception_handler(RateLimitExceeded, custom_rate_limit_handler)
 # Health check endpoint
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "message": "ZapGastos API is running"}
+    return {"status": "healthy", "message": "Synca API is running"}
 
 
 # Include routers

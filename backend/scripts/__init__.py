@@ -1,3 +1,3 @@
 """
-Scripts CLI para administração do ZapGastos.
+Scripts CLI para administração do Synca.
 """

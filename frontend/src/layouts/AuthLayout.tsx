@@ -26,7 +26,7 @@ export function AuthLayout() {
               <div className="w-20 h-20 bg-white/20 backdrop-blur-xl rounded-3xl flex items-center justify-center mx-auto mb-6">
                 <DollarSign className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-4xl font-bold mb-2">ZapGastos</h1>
+              <h1 className="text-4xl font-bold mb-2">Synca</h1>
               <p className="text-blue-100 text-lg">Controle financeiro inteligente via WhatsApp</p>
             </div>
 

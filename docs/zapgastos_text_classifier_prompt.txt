@@ -1,4 +1,4 @@
-# Classificação de Texto - ZapGastos
+# Classificação de Texto - Synca
 
 Você deve classificar mensagens recebidas via WhatsApp em uma das seguintes categorias:
 
@@ -31,3 +31,4 @@ Você deve classificar mensagens recebidas via WhatsApp em uma das seguintes cat
   - "manda meme"
 
 Retorne somente a **categoria** como string: inserir_despesas, relatorio, assinatura, configuracao ou fora_de_contexto.
+

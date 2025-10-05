@@ -137,7 +137,7 @@ export function LandingPage() {
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] bg-clip-text text-transparent">
-                ZapGastos
+                Synca
               </h1>
             </motion.div>
 
@@ -240,7 +240,7 @@ export function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Por que escolher o ZapGastos?
+              Por que escolher o Synca?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Uma solução completa para gestão financeira pessoal integrada ao WhatsApp
@@ -393,11 +393,11 @@ export function LandingPage() {
                 <DollarSign className="w-5 h-5 text-white" />
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] bg-clip-text text-transparent">
-                ZapGastos
+                Synca
               </h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400">
-              © 2024 ZapGastos. Todos os direitos reservados.
+              © 2024 Synca. Todos os direitos reservados.
             </p>
           </div>
         </div>

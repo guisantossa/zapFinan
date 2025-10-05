@@ -1,13 +1,13 @@
-# ZapGastos Project
+# Synca Project
 
-ZapGastos is a financial management application that allows users to track their expenses through WhatsApp. The application is designed to be simple and user-friendly, eliminating the need for traditional apps or spreadsheets.
+Synca is a financial management application that allows users to track their expenses through WhatsApp. The application is designed to be simple and user-friendly, eliminating the need for traditional apps or spreadsheets.
 
 ## Project Structure
 
 The project is organized into the following directories and files:
 
 ```
-zapgastos
+synca
 ├── app
 │   ├── main.py              # Initializes the application and sets up navigation
 │   ├── auth.py              # Handles user authentication via WhatsApp number
@@ -53,7 +53,7 @@ The application interacts with an API that returns data from the following table
    ```
 2. Navigate to the project directory:
    ```
-   cd zapgastos
+   cd synca
    ```
 3. Install the required dependencies:
    ```
@@ -71,3 +71,4 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+

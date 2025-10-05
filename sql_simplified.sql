@@ -1,4 +1,4 @@
--- ZapGastos - Schema Simplificado (Sem Planos e Pagamentos)
+-- Synca - Schema Simplificado (Sem Planos e Pagamentos)
 
 DROP TABLE IF EXISTS categories CASCADE;
 -- Tabela de Categorias

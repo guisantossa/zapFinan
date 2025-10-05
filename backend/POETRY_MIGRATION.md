@@ -1,8 +1,8 @@
-# Poetry Migration Guide for ZapGastos Backend
+# Poetry Migration Guide for Synca Backend
 
 ## Overview
 
-This guide helps you migrate from pip/requirements.txt to Poetry for the ZapGastos FastAPI backend project.
+This guide helps you migrate from pip/requirements.txt to Poetry for the Synca FastAPI backend project.
 
 ## What Changed
 
@@ -146,10 +146,10 @@ The Dockerfile has been updated to use Poetry:
 
 ```dockerfile
 # Build image
-docker build -t zapgastos-backend .
+docker build -t synca-backend .
 
 # Run container
-docker run -p 8000:8000 zapgastos-backend
+docker run -p 8000:8000 synca-backend
 ```
 
 ### Docker Compose (if using)
@@ -347,3 +347,4 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 - [ ] Update documentation
 - [ ] Share guide with team
 - [ ] Remove old `requirements.txt` (optional)
+

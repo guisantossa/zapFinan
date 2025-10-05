@@ -16,7 +16,7 @@ def print_test_result(test_name, success, message=""):
 
 
 async def test_new_auth_system():
-    print("🔐 Testando Novo Sistema de Autenticação ZapGastos")
+    print("🔐 Testando Novo Sistema de Autenticação Synca")
     print("=" * 60)
     print()
 

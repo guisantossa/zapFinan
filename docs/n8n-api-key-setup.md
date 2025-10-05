@@ -2,7 +2,7 @@
 
 ## 📋 Visão Geral
 
-Este guia explica como configurar a autenticação API Key para a integração do ZapGastos com N8N (webhooks WhatsApp).
+Este guia explica como configurar a autenticação API Key para a integração do Synca com N8N (webhooks WhatsApp).
 
 ### Fluxo de Funcionamento
 
@@ -23,7 +23,7 @@ Este guia explica como configurar a autenticação API Key para a integração d
 └─────────────────────────────────────────────────────────────┘
                            ↓
 ┌─────────────────────────────────────────────────────────────┐
-│  4. N8N chama API ZapGastos                                 │
+│  4. N8N chama API Synca                                 │
 │     Header: X-API-Key (System Key)                          │
 │     Body: telefone do usuário                               │
 └─────────────────────────────────────────────────────────────┘
@@ -58,7 +58,7 @@ python -m scripts.create_system_key --user-id f47ac10b-58cc-4372-a567-0e02b2c3d4
 **Saída:**
 ```
 ======================================================================
- ZapGastos - Gerador de System API Key para N8N
+ Synca - Gerador de System API Key para N8N
 ======================================================================
 
 👤 Usuário ID: f47ac10b-58cc-4372-a567-0e02b2c3d479
@@ -88,16 +88,16 @@ zpg_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7
 1. Acesse as configurações do N8N
 2. Adicione variável de ambiente:
 
-   Nome:  ZAPGASTOS_API_KEY
+   Nome:  SYNCA_API_KEY
    Valor: zpg_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7
 
 3. Nos HTTP Request nodes, adicione header:
 
    Nome:  X-API-Key
-   Valor: {{$env.ZAPGASTOS_API_KEY}}
+   Valor: {{$env.SYNCA_API_KEY}}
 ----------------------------------------------------------------------
 
-✅ Pronto! O N8N agora pode autenticar na API do ZapGastos.
+✅ Pronto! O N8N agora pode autenticar na API do Synca.
 ```
 
 **Opções do script:**
@@ -137,25 +137,25 @@ Authorization: Bearer <seu-jwt-token>
 No arquivo `.env` do N8N ou nas configurações do ambiente:
 
 ```bash
-ZAPGASTOS_API_KEY=zpg_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7
-ZAPGASTOS_API_URL=https://api.zapgastos.com
+SYNCA_API_KEY=zpg_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7
+SYNCA_API_URL=https://api.synca.com
 ```
 
 ### Passo 2: Configurar HTTP Request Node
 
-Nos nodes que fazem requisições para a API do ZapGastos:
+Nos nodes que fazem requisições para a API do Synca:
 
 ```
 ┌─────────────────────────────────────┐
 │  HTTP Request Node                  │
 ├─────────────────────────────────────┤
 │  Method: POST                       │
-│  URL: {{$env.ZAPGASTOS_API_URL}}/n8n/transaction/create
+│  URL: {{$env.SYNCA_API_URL}}/n8n/transaction/create
 │                                     │
 │  Headers:                           │
 │  ┌───────────────────────────────┐ │
 │  │ Name:  X-API-Key              │ │
-│  │ Value: {{$env.ZAPGASTOS_API_KEY}} │
+│  │ Value: {{$env.SYNCA_API_KEY}} │
 │  └───────────────────────────────┘ │
 │  ┌───────────────────────────────┐ │
 │  │ Name:  Content-Type           │ │
@@ -364,14 +364,14 @@ POST /api-keys/system
       "type": "n8n-nodes-base.httpRequest",
       "parameters": {
         "method": "POST",
-        "url": "{{$env.ZAPGASTOS_API_URL}}/n8n/transaction/create",
+        "url": "{{$env.SYNCA_API_URL}}/n8n/transaction/create",
         "authentication": "none",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "X-API-Key",
-              "value": "={{$env.ZAPGASTOS_API_KEY}}"
+              "value": "={{$env.SYNCA_API_KEY}}"
             },
             {
               "name": "Content-Type",
@@ -412,8 +412,9 @@ POST /api-keys/system
 
 1. **Gere a key:** `python -m scripts.create_system_key --user-id <uuid>`
 2. **Salve a key:** Copie e guarde em local seguro
-3. **Configure N8N:** Adicione `ZAPGASTOS_API_KEY` no .env
-4. **Use nos nodes:** Header `X-API-Key: {{$env.ZAPGASTOS_API_KEY}}`
+3. **Configure N8N:** Adicione `SYNCA_API_KEY` no .env
+4. **Use nos nodes:** Header `X-API-Key: {{$env.SYNCA_API_KEY}}`
 5. **Envie requests:** Inclua `telefone` no body para identificar usuário
 
-✅ **Pronto!** Seu N8N está integrado ao ZapGastos com autenticação segura.
+✅ **Pronto!** Seu N8N está integrado ao Synca com autenticação segura.
+

@@ -235,7 +235,7 @@ export function AdvancedDataExportWidget({ className = '', dashboardData }: Adva
   const generateFileName = (format: ExportFormat): string => {
     const date = new Date().toISOString().split('T')[0];
     const formatName = settings.format;
-    return `zapgastos_${formatName}_${date}.${format.fileExtension}`;
+    return `synca_${formatName}_${date}.${format.fileExtension}`;
   };
 
   const generateFileSize = (size: 'small' | 'medium' | 'large'): string => {
@@ -266,7 +266,7 @@ export function AdvancedDataExportWidget({ className = '', dashboardData }: Adva
   const shareFile = (job: ExportJob) => {
     if (navigator.share) {
       navigator.share({
-        title: 'Relatório Financeiro ZapGastos',
+        title: 'Relatório Financeiro Synca',
         text: `Confira meu relatório financeiro: ${job.fileName}`,
         url: job.downloadUrl
       });

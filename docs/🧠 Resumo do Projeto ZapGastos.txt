@@ -1,4 +1,4 @@
-🧠 Resumo do Projeto ZapGastos
+🧠 Resumo do Projeto Synca
 Repositório GitHub: já criado
 
 Arquitetura atual:
@@ -16,3 +16,4 @@ Deploy: todos os serviços sendo executados diretamente na EC2
 Fase atual:
 
 Arquitetura e implementação dos fluxos de automação no n8n
+

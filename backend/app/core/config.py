@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     GOOGLE_REDIRECT_URI: str = "http://localhost:8000/compromissos/google/callback"
 
     # App Settings
-    APP_NAME: str = "ZapGastos API"
+    APP_NAME: str = "Synca API"
     DEBUG: bool = False
 
     # Email Settings (for verification emails)
@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     SMTP_USER: Optional[str] = None
     SMTP_PASSWORD: Optional[str] = None
     EMAIL_FROM: Optional[str] = None
-    EMAIL_FROM_NAME: str = "ZapGastos"
+    EMAIL_FROM_NAME: str = "Synca"
 
     class Config:
         env_file = ".env"
